@@ -1,37 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-
 		<!-- HOME SLIDER -->
 		<div class="slider-container">
 			<div class="owl-carousel owl-theme home-slider">
+				
+				{% for carousel in carousels %}
 				<div class="slider-post slider-item-box">
-					<img class="img-fluid" src="images/hr_img1.jpg" alt="">
+					<img class="img-fluid" src="{{ carousel.image.url }}" alt="">
 					<div class="slider-caption">
 						<div class="slider-text">
-							<h2>Biz hüquqi yardım<br>göstəririk</h2>
+							<h2>{{ carousel.content }}</h2>
 							<a class="btn-white" href="services-type.html">Ətraflı</a>
 						</div>
 					</div>
 				</div>
-				<div class="slider-post slider-item-box">
-					<img class="img-fluid" src="images/hr_img2.jpg" alt="">
-					<div class="slider-caption">
-						<div class="slider-text">
-							<h2>Biz hüquqi yardım<br>göstəririk</h2>
-							<a class="btn-white" href="services-type.html">Ətraflı</a>
-						</div>
-					</div>
-				</div>
-				<div class="slider-post slider-item-box">
-					<img class="img-fluid" src="images/hr_img3.jpg" alt="">
-					<div class="slider-caption">
-						<div class="slider-text">
-							<h2>Biz hüquqi yardım<br>göstəririk</h2>
-							<a class="btn-white" href="services-type.html">Ətraflı</a>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
+					
+
 			</div>
 		</div>
 		<!-- /HOME SLIDER -->
@@ -70,140 +56,26 @@
 						<h2 class="section-heading-title">Xidmətlər</h2>
 					</div>
 				</div>
-				<!-- /row -->
+					
 				<div class="row practice-items-holder">
-					<div class="col-md-6 col-lg-4 practice-item-4cols">
-						<a href="services-type.html">
-							<div class="practice-item">
-								<div class="practice-icon"><i class="fas fa-truck"></i></div>
-								<h3 class="practice-title">Hüquq xidmətlər</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-6 col-lg-4 practice-item-4cols">
-						<a href="services-type.html">
-							<div class="practice-item">
-								<div class="practice-icon"><i class="fas fa-hard-hat"></i></div>
-								<h3 class="practice-title">Sosial xidmətlər</h3>
-							</div>
-						</a>
-					</div>
-					<div class="col-md-6 col-lg-4 practice-item-4cols">
-						<a href="services-type.html">
-							<div class="practice-item">
-								<div class="practice-icon"><i class="far fa-building"></i></div>
-								<h3 class="practice-title">Fiziki xidmətlər</h3>
-							</div>
-						</a>
-					</div>
-				</div>
-				<!-- /row -->
-				<div class="view-more alignc margin-t72"><a href="services.html">Ətraflı</a></div>
-			</div>
-			<!-- /container -->	
-		</section>
-		<!-- /SECTION 3-->
-		<section class="blog-1col-list-left">
-			<div class="blog_title">
-				<h2>Blog</h2>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 posts-holder post-sidebar ">
-						<div class="row">
-							<div class="col-md-6 col-lg-4">
-								<article class=" blog-item-2col-grid">
-									<a href="blog-single-post.html">
-										<div class="post-image"> <img src="images/blog/blog-1.jpg" class="img-fluid" alt=""></div>
-									</a>
-									<div class="post-holder">
-										<ul class="blog-date">
-											<li class="meta-date">October 10, 2019</li>
-										</ul>
-										<h2 class="blog-title"><a href="blog-single-post.html">Thinking Out Of The Box After A Simple Car Accident</a></h2>
-										<div class="article-excerpt"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dicta, nostrum natus suscipit veritatis sequi facere, sunt eaque pariatur ea doloremque cum, odit reiciendis quae minus dolore nobis perferendis beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis odit illo temporibus quo quam veritatis maiores qui, perspiciatis aliquam, nobis distinctio cupiditate quaerat omnis, nemo ullam dolore eligendi recusandae.</div>
-									</div>
-								</article>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<article class=" blog-item-2col-grid">
-									<a href="blog-single-post.html">
-										<div class="post-image"> <img src="images/blog/blog-2.jpg" class="img-fluid" alt=""></div>
-									</a>
-									<div class="post-holder">
-										<ul class="blog-date">
-											<li class="meta-date">October 9, 2019</li>
-										</ul>
-										<h2 class="blog-title"><a href="blog-single-post.html">Understanding Domestic Violence Defense</a></h2>
-										<div class="article-excerpt"> Arnare varius mauris eu commodo. Aenean nibh risus, rhoncus eget consectetur ac. Consectetur adipiscing elit. Vivamus auctor condimentum sem et gravida. Maecenas id enim pharetra...</div>
-									</div>
-								</article>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<article class=" blog-item-2col-grid">
-									<a href="blog-single-post.html">
-										<div class="post-image"> <img src="images/blog/blog-9.jpg" class="img-fluid" alt=""></div>
-									</a>
-									<div class="post-holder">
-										<ul class="blog-date">
-											<li class="meta-date">October 8, 2019</li>
-										</ul>
-										<h2 class="blog-title"><a href="blog-single-post.html">How to Make a Claim Against an Airline</a></h2>
-										<div class="article-excerpt"> Arnare varius mauris eu commodo. Aenean nibh risus, rhoncus eget consectetur ac. Consectetur adipiscing elit. Vivamus auctor condimentum sem et gravida. Maecenas id enim pharetra...</div>
-									</div>
-								</article>
-							</div>
+					{% for service in services %}
+						<div class="col-md-6 col-lg-4 practice-item-4cols">
+							<a href="services-type.html">
+								<div class="practice-item">
+									<div class="practice-icon"><i class="{{ service.fa_class }}"></i></div>
+									<h3 class="practice-title">{{ service.name }}</h3>
+								</div>
+							</a>
 						</div>
-						<!-- /row -->
-					</div>
-					<!-- /col-lg-12 -->
+					{% endfor %}
+
 				</div>
-				<div class="view-more alignc margin-t72"><a href="blog.html	">Ətraflı</a></div>
 				<!-- /row -->
+				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:services' %}">Ətraflı</a></div>
 			</div>
 			<!-- /container -->	
 		</section>
 
-		<!-- <section class="section_faq">
-			<div class="blog_title">
-				<h2>FAQ</h2>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div>
-							<ul class="faq-list">
-								<li>
-									<h5 class="faq-title"><a href="#faq1">Why our lawyers firm?</a></h5>
-									<div id="faq1" class="faq-section">
-										<p>Lorem ipsum dolor sit amet, mea in tacimates electram. Diam facilis cum ei, ei novum accusamus scribentur per. Ei agam necessitatibus ius. Ius ei dolorem constituto. Vel sale repudiandae no, harum putent vivendum ne ius. Quo ex unum iisque. </p>
-									</div>
-								</li>
-								<li>
-									<h5 class="faq-title"><a href="#faq2">How does it work?</a></h5>
-									<div id="faq2" class="faq-section">
-										<p>Sale vivendum senserit an eum, ubique noster ex pro, at vel accommodare ullamcorper. Cu duo minim vocibus menandri, at omittam voluptatum usu. Fabulas docendi iracundia ex cum, viris putant dissentiunt ex cum. Id vim tale mutat, eu vide velit oporteat pri. Mollis vidisse saperet. </p>
-									</div>
-								</li>
-								<li>
-									<h5 class="faq-title"><a href="#faq3">Is first consultation free?</a></h5>
-									<div id="faq3" class="faq-section">
-										<p>Eam ei suscipit partiendo, nam modus vocibus cotidieque eu, semper apeirian laboramus sit ne. Qui apeirian tacimates at, has errem possim an, eligendi pericula delicatissimi per ad. At pro essent aliquip qualisque, vis splendide posidonium ex. Nec et error quodsi deleniti. Dicit nobis latine qui an, per duis summo impetus an, eam ne perfecto intellegat persequeris.  </p>
-									</div>
-								</li>
-								<li>
-									<h5 class="faq-title"><a href="#faq4">How can we help?</a></h5>
-									<div id="faq4" class="faq-section">
-										<p>In cibo aperiri evertitur vis, sit autem facete cotidieque cu, omnesque voluptua voluptatibus mea ut. Cum ea omnes percipitur cotidieque, propriae suavitate te qui, laudem voluptatibus ne ius. Ut eam lorem consul. Eam bonorum percipit explicari in, efficiendi scripserit ex sed. Usu soluta integre fastidii eu. Et mei ipsum sensibus delicata, ius eu choro solet denique. Populo facilisi. </p>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="view-more alignc margin-t72"><a href="blog-full-width.html">Ətraflı</a></div>
-			</div>
-		</section> -->
 
 		<!-- SECTION 5-->
 		<section class="section-holder">
