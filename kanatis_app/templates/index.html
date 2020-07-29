@@ -16,7 +16,7 @@
 					</div>
 				</div>
 				{% endfor %}
-					
+
 
 			</div>
 		</div>
@@ -36,13 +36,11 @@
 				<!-- /row -->
 				<div class="row">
 					<div class="col-lg-12 margin-bm32">
-						<p><span class="dropcap">W</span>e are passionate advocates for victims of serious accidents. Donec suscipit lobortis ornare. Aenean vel varius odio. Cras ligula odio, congue vel adipiscing non, congue vitae neque. Pellentesque adipiscing ultricies risus, auctor ullamcorper.
-							Sed elit nulla, varius vitae lacus hendrerit, pulvinar tincidunt lacus. Suspendisse quis purus ultrices, convallis felis ac, pulvinar tortor. Etiam adipiscing enim diam, vitae lacinia ipsum volutpat id. Sed varius nisl quis justo feugiat, a tempor enim pellentesque.
-							Nullam at ligula at velit adipiscing malesuada et venenatis enim. Praesent lacinia volutpat imperdiet. Integer ultricies aliquam auctor. Etiam gravida sagittis ipsum nec dictum. Nunc pretium est quis placerat congue. Nam dui lectus, pretium get elit.
+						<p>{{ about.description|safe }}
 						</p>
 					</div>
 				</div>
-				<div class="view-more alignc margin-t72"><a href="about-us.html">Ətraflı</a></div>
+				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:about' %}">Ətraflı</a></div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
@@ -87,38 +85,13 @@
 				</div>
 				<!-- /row -->
 				<div class="row">
+					{% for team in teams %}
 					<div class="col-lg-3 col-md-6">
 						<div class="lawyer-holder lawyer-3col">
-							<a href="team-single-page.html"><img src="images/team/team-4.jpg" class="img-fluid" alt="" ></a>
-							<div class="lawyer-position">Founder</div>
-							<h2 class="lawyer-title"><a href="team-single-page.html">Sarah Barrett</a></h2>
-							<div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-							<ul class="lawyer-social">
-								<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-								<li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="lawyer-holder lawyer-3col">
-							<a href="team-single-page.html"><img src="images/team/team-6.jpg" class="img-fluid" alt="" ></a>
-							<div class="lawyer-position">Senior Partner</div>
-							<h2 class="lawyer-title"><a href="team-single-page.html">Mike Holmes</a></h2>
-							<div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-							<ul class="lawyer-social">
-								<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="lawyer-holder lawyer-3col">
-							<a href="team-single-page.html"><img src="images/team/team-1.jpg" class="img-fluid" alt="" ></a>
-							<div class="lawyer-position">Lawyer</div>
-							<h2 class="lawyer-title"><a href="team-single-page.html">Teresa Perkins</a></h2>
-							<div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
+							<a href="{% url 'kanatis:detail_team' team.slug %}"><img src="{{ team.img.url }}" class="img-fluid" alt="" ></a>
+							<div class="lawyer-position">{{ team.sttus }}</div>
+							<h2 class="lawyer-title"><a href="{% url 'kanatis:detail_team' team.slug %}">{{ team.name }}</a></h2>
+							<div class="lawyer-excerpt">{{ team.desc|truncatechars:120|safe }}</div>
 							<ul class="lawyer-social">
 								<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
 								<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
@@ -126,22 +99,10 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-3 col-md-6">
-						<div class="lawyer-holder lawyer-3col">
-							<a href="team-single-page.html"><img src="images/team/team-1.jpg" class="img-fluid" alt="" ></a>
-							<div class="lawyer-position">Lawyer</div>
-							<h2 class="lawyer-title"><a href="team-single-page.html">Teresa Perkins</a></h2>
-							<div class="lawyer-excerpt">Integer imperdiet purus urna, a volutpat turpis feugiat vitae. Proin molestie in metus eu volutpat. Vestibulum vitae orci sit amet.</div>
-							<ul class="lawyer-social">
-								<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
-							</ul>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
 				<!-- /row -->
-				<div class="view-more alignc"><a href="team.html">Ətraflı</a></div>
+				<div class="view-more alignc"><a href="{% url 'kanatis:teams' %}">Ətraflı</a></div>
 			</div>
 			<!-- /container -->	
 		</section>
@@ -155,54 +116,29 @@
 				<div class="row">
 					<div class="col-lg-12 posts-holder post-sidebar ">
 						<div class="row">
-							<div class="col-md-6 col-lg-4">
-								<article class=" blog-item-2col-grid">
-									<a href="news-single-post.html">
-										<div class="post-image"> <img src="images/blog/blog-1.jpg" class="img-fluid" alt=""></div>
-									</a>
-									<div class="post-holder">
-										<ul class="blog-date">
-											<li class="meta-date">October 10, 2019</li>
-										</ul>
-										<h2 class="blog-title"><a href="news-single-post.html">Thinking Out Of The Box After A Simple Car Accident</a></h2>
-										<div class="article-excerpt"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dicta, nostrum natus suscipit veritatis sequi facere, sunt eaque pariatur ea doloremque cum, odit reiciendis quae minus dolore nobis perferendis beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis odit illo temporibus quo quam veritatis maiores qui, perspiciatis aliquam, nobis distinctio cupiditate quaerat omnis, nemo ullam dolore eligendi recusandae.</div>
-									</div>
-								</article>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<article class=" blog-item-2col-grid">
-									<a href="news-single-post.html">
-										<div class="post-image"> <img src="images/blog/blog-2.jpg" class="img-fluid" alt=""></div>
-									</a>
-									<div class="post-holder">
-										<ul class="blog-date">
-											<li class="meta-date">October 9, 2019</li>
-										</ul>
-										<h2 class="blog-title"><a href="news-single-post.html">Understanding Domestic Violence Defense</a></h2>
-										<div class="article-excerpt"> Arnare varius mauris eu commodo. Aenean nibh risus, rhoncus eget consectetur ac. Consectetur adipiscing elit. Vivamus auctor condimentum sem et gravida. Maecenas id enim pharetra...</div>
-									</div>
-								</article>
-							</div>
-							<div class="col-md-6 col-lg-4">
-								<article class=" blog-item-2col-grid">
-									<a href="news-single-post.html">
-										<div class="post-image"> <img src="images/blog/blog-9.jpg" class="img-fluid" alt=""></div>
-									</a>
-									<div class="post-holder">
-										<ul class="blog-date">
-											<li class="meta-date">October 8, 2019</li>
-										</ul>
-										<h2 class="blog-title"><a href="news-single-post.html">How to Make a Claim Against an Airline</a></h2>
-										<div class="article-excerpt"> Arnare varius mauris eu commodo. Aenean nibh risus, rhoncus eget consectetur ac. Consectetur adipiscing elit. Vivamus auctor condimentum sem et gravida. Maecenas id enim pharetra...</div>
-									</div>
-								</article>
-							</div>
+							{% for post in posts %}
+								<div class="col-md-6 col-lg-4">
+									<article class=" blog-item-2col-grid">
+										<a href="news-single-post.html">
+											<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
+										</a>
+										<div class="post-holder">
+											<ul class="blog-date">
+												<li class="meta-date">October 10, 2019</li>
+											</ul>
+											<h2 class="blog-title"><a href="{% url 'kanatis:blog_detail' post.slug %}">Thinking Out Of The Box After A Simple Car Accident</a></h2>
+											<div class="article-excerpt"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dicta, nostrum natus suscipit veritatis sequi facere, sunt eaque pariatur ea doloremque cum, odit reiciendis quae minus dolore nobis perferendis beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis odit illo temporibus quo quam veritatis maiores qui, perspiciatis aliquam, nobis distinctio cupiditate quaerat omnis, nemo ullam dolore eligendi recusandae.</div>
+										</div>
+									</article>
+								</div>
+							{% endfor %}
+
 						</div>
 						<!-- /row -->
 					</div>
 					<!-- /col-lg-12 -->
 				</div>
-				<div class="view-more alignc margin-t72"><a href="news.html">Ətraflı</a></div>
+				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:blog' %}">Ətraflı</a></div>
 				<!-- /row -->
 			</div>
 		</section>

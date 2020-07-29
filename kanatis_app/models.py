@@ -4,7 +4,6 @@ from django.utils.text import slugify
 from django.contrib.auth import get_user_model
 
 
-
 User = get_user_model()
 
 def latin_slugify(str):
@@ -26,7 +25,7 @@ def latin_slugify(str):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = models.RichTextField()
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     image = models.ImageField(upload_to='postimages/')
     category = models.ForeignKey('Service', related_name='posts', on_delete=models.CASCADE)
@@ -71,7 +70,7 @@ class Service(models.Model):
 class SubService(models.Model):
     title = models.CharField(max_length=30)
     image = models.ImageField(upload_to='subservices/')
-    content = models.TextField()
+    content = models.RichTextField()
     fa_icon = models.CharField(max_length=50)
     service = models.ForeignKey('Service', on_delete=models.CASCADE)
 
@@ -112,12 +111,17 @@ class Team(models.Model):
     facebook = models.CharField(max_length=255, null=True, blank=True)
     instagram = models.CharField(max_length=255, null=True, blank=True)
     twitter = models.CharField(max_length=255, null=True, blank=True)
+    slug = models.SlugField(unique=True, null=True, editable=False)
 
     def __str__(self):
         return f'{self.name}'
 
     class Meta:
         verbose_name_plural = "Komanda"
+
+    def save(self, *args, **kwargs):
+        self.slug = latin_slugify(self.name[:48])
+        super(Team, self).save(*args, **kwargs)
 
 
 class TeamServices(models.Model):
@@ -141,6 +145,7 @@ class SertificateTeam(models.Model):
 
 class Contact(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
+    email = models.EmailField()
     office_hour = models.CharField(max_length=255, null=True, blank=True)
     number = models.CharField(max_length=255, null=True, blank=True)
     text = RichTextField()

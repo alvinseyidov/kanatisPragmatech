@@ -8,7 +8,11 @@ from .models import *
 # Create your views here.
 def common():
     context = {}
-    context['text'] = TextPages.objects.last()
+    context['text'] = TextPages.objects.order_by('-id').last()
+    context["about"] = AboutUs.objects.order_by('-id').last()
+    context['contact'] = Contact.objects.order_by('-id').last()
+    context['allservices'] = Service.objects.order_by('-id').all()
+
     return context
 
 
@@ -19,6 +23,11 @@ class HomePageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["carousels"] = Carousel.objects.all()[:15]
         context["services"] = Service.objects.order_by('-id')[:3]
+        context["posts"] = Post.objects.order_by('-id')[:3]
+        context["teams"] = Team.objects.order_by('-id')[:4]
+        context["about"] = AboutUs.objects.order_by('-id').last()
+        context['contact'] = Contact.objects.order_by('-id').last()
+        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
 
@@ -27,6 +36,14 @@ class BlogPageView(ListView):
     paginate_by = 6
     template_name = 'blog.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contact'] = Contact.objects.order_by('-id').last()
+        context["about"] = AboutUs.objects.order_by('-id').last()
+        context['allservices'] = Service.objects.order_by('-id').all()
+        return context
+    
+
 
 class BlogDetailView(DetailView):
     model = Post
@@ -34,6 +51,9 @@ class BlogDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['contact'] = Contact.objects.order_by('-id').last()
+        context["about"] = AboutUs.objects.order_by('-id').last()
+        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
 
@@ -45,36 +65,62 @@ class ServicePageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
         context["services"] = Service.objects.all()[:100]
-        
+        context['contact'] = Contact.objects.order_by('-id').last()
+        context["about"] = AboutUs.objects.order_by('-id').last()
+        return context
+
+
+class SubServicePageView(ListView):
+    template_name = 'services-type.html'
+    model = SubService
+
+    def get_context_data(self, **kwargs):
+        context = super(SubServicePageView, self).get_context_data(**kwargs)
+        context.update({
+            'all': SubService.objects.all(),
+            'page_title': 'Latest'
+        })
+        context['contact'] = Contact.objects.order_by('-id').last()
+        context["about"] = AboutUs.objects.order_by('-id').last()
+        return context
+
+
+class SubServiceDetailView(TemplateView):
+    template_name = 'services-type-detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(SubServiceDetailView, self).get_context_data(**kwargs)
+ 
+        context['contact'] = Contact.objects.order_by('-id').last()
+        context["about"] = AboutUs.objects.order_by('-id').last()
         return context
 
 
 def aboutus(request):
     context = common()
-    context['about'] = AboutUs.objects.last()
+    context['about'] = AboutUs.objects.order_by('-id').last()
     return render(request, 'about-us.html', context)
 
 
 def teams(request):
     context = common()
-    context['member'] = Team.objects.all()
+    context['member'] = Team.objects.all().order_by('-id')
     return render(request, 'team.html', context)
 
 
-def detail_team(request, pk):
+def detail_team(request, slug):
     context = common()
-    team = Team.objects.filter(pk=pk).last()
+    team = Team.objects.filter(slug=slug).order_by('-id').last()
     context['team'] = team
-    context['services'] = TeamServices.objects.filter(service=team).all()
-    context['sertificate'] = SertificateTeam.objects.filter(sertificate=team).all()
+    context['services'] = TeamServices.objects.filter(service=team).order_by('-id').all()
+    context['sertificate'] = SertificateTeam.objects.filter(sertificate=team).order_by('-id').all()
     return render(request, 'team-single-page.html', context)
 
 
 def contactus(request):
     context = common()
-    context['contact'] = Contact.objects.last()
+    
     form = ContactForm()
     context['form'] = form
     if request.method == 'POST':

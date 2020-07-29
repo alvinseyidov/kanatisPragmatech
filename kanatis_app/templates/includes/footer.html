@@ -7,7 +7,7 @@
                         <h5 class="widgettitle">Haqqımızda</h5>
                         <div class="textwidget">
                             <div class="textwidget">
-                                <p>Maecenas lorem mi, interdum id commodo ac, tincidunt vitae magna. In hac habitasse platea dictumst. Pellentesque quam justo, aliquam non accumsan a, aliquam id dolor.</p>
+                                <p>{{ about.description|safe }}</p>
                             </div>
                         </div>
                     </div>
@@ -17,8 +17,8 @@
                         <h5 class="widgettitle">Əlaqə</h5>
                         <div class="textwidget">
                             <div class="textwidget">
-                                <p>40 Park Ave, Brooklyn, New York,<br> NY 10000, US</p>
-                                <p>+1 800 111 2222<br> contact@example.com</p>
+                                <p>{{ contact.address }}</p>
+                                <p>{{ contact.number }}<br> {{ contact.email }}</p>
                             </div>
                         </div>
                     </div>
@@ -28,13 +28,12 @@
                         <h5 class="widgettitle">Linklər</h5>
                         <div class="textwidget custom-html-widget">
                             <ul>
-                                <li> <a href="index.html">Əsas Səhifə</a></li>
-                                <li><a href="about-us.html">Haqqımızda</a></li>
-                                <li><a href="services.html">Xidmətlər</a></li>
-                                <li><a href="blog-main.html">Blog</a></li>
-                                <li><a href="team.html">Team</a></li>
-                                <li><a href="news-main.html">Xəbərlər</a></li>
-                                <li><a href="contact.html">Əlaqə</a></li>
+                                <li> <a href="{% url 'kanatis:index' %}">Əsas Səhifə</a></li>
+                                <li><a href="{% url 'kanatis:about' %}">Haqqımızda</a></li>
+                                <li><a href="{% url 'kanatis:services' %}">Xidmətlər</a></li>
+                                <li><a href="{% url 'kanatis:teams' %}">Team</a></li>
+                                <li><a href="{% url 'kanatis:blog' %}">Xəbərlər</a></li>
+                                <li><a href="{% url 'kanatis:contact' %}">Əlaqə</a></li>
                             </ul>
                         </div>
                     </div>
@@ -45,7 +44,7 @@
                 <li><a class="social-twitter" href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
                 <li><a class="social-linkedin" href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
             </ul>
-            <div class="foo-copyright alignc">Copyright &copy; 2019 Lawyers. Designed by MatchThemes</div>
+            <div class="foo-copyright alignc">Copyright &copy; 2020 Kanatis. Designed by Pragmatech</div>
         </div>
     </div>
 </footer>
