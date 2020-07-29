@@ -1,46 +1,52 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en-US">
-	<head>
-		
-		<meta charset="utf-8">
-		<title>Top Header 2 - Attorneys Business HTML Template</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="robots" content="noodp"/>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i%7CCrimson+Text:400,400i,700,700i" rel='stylesheet' type='text/css'>
-		<!-- Bootstrap CSS -->
-		<link rel='stylesheet' id='bootstrap-css'  href="{% static 'assets/css/bootstrap/css/bootstrap.css' %}" type='text/css' media='all' />
-		<!-- Font Awesome Icons CSS -->
-		<link rel='stylesheet' id='font-awesome'  href="{% static 'assets/css/fontawesome/css/all.min.css' %}" type='text/css' media='all' />
-		<!-- Owl Carousel -->
-		<link rel='stylesheet' id='owl-carousel'  href="{% static 'assets/js/owl-carousel/owl.carousel.css' %}" type='text/css' media='all' />
-		<!-- Main CSS File -->
-		<link rel='stylesheet' id='lawyers-style-css'  href="{% static 'assets/style.css' %}" type='text/css' media='all' />
-		<!-- favicons -->
-		<link rel="icon" href="{% static 'assets/images/icons/favicon-32x32.png" sizes="32x32" />
-		<link rel="icon" href="{% static 'assets/images/icons/favicon-192x192.png" sizes="192x192" />
-		<link rel="apple-touch-icon-precomposed" href="{% static 'assets/images/icons/favicon-180x180.png" />
-	</head>
-	<body>
-        <div class="menu-mask"></div>
-        
-        {% include "includes/header.html" %}
+<head>
 
-        {% block body %}
-          
-        {% endblock body %}
+    <meta charset="utf-8">
+    <title>Kanatis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i%7CCrimson+Text:400,400i,700,700i"
+          rel='stylesheet' type='text/css'>
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' id='bootstrap-css' href="{% static 'assets/css/bootstrap/css/bootstrap.css' %}"
+          type='text/css' media='all'/>
+    <!-- Font Awesome Icons CSS -->
+    <link rel='stylesheet' id='font-awesome' href="{% static 'assets/css/fontawesome/css/all.min.css' %}"
+          type='text/css' media='all'/>
+    <!-- Owl Carousel -->
+    <link rel='stylesheet' id='owl-carousel' href="{% static 'assets/js/owl-carousel/owl.carousel.css' %}"
+          type='text/css' media='all'/>
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <link rel='stylesheet' id='lawyers-style-css' href="{% static 'assets/style.css' %}" type='text/css' media='all'/>
+    <!-- favicons -->
+    <link rel="icon" href="{% static 'assets/images/icons/favicon-32x32.png" sizes="32x32" /' %}">
+    <link rel="icon" href="{% static 'assets/images/icons/favicon-192x192.png" sizes="192x192" />' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'assets/images/icons/favicon-180x180.png" />' %} ">
+</head>
+<body>
+<div class=" menu-mask"></div>
+
+{% include "includes/header.html" %}
+
+{% block body %}
+
+{% endblock body %}
 
 
 
-        
-		<!-- FOOTER -->
-        {% include "includes/footer.html" %}
 
-		<!-- /FOOTER -->
-		<div class="scrollup"> <a class="scrolltop" href="#"> <i class="fa fa-chevron-up"></i> </a></div>
-        <!-- JS --> 
-        {% include "includes/js_files.html" %}
-        
+<!-- FOOTER -->
+{% include "includes/footer.html" %}
 
-	</body>
+<!-- /FOOTER -->
+<div class="scrollup"><a class="scrolltop" href="#"> <i class="fa fa-chevron-up"></i> </a></div>
+<!-- JS -->
+{% include "includes/js_files.html" %}
+
+
+</body>
 </html>
