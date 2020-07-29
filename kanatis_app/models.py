@@ -25,7 +25,7 @@ def latin_slugify(str):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = models.RichTextField()
+    content = RichTextField()
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     image = models.ImageField(upload_to='postimages/')
     category = models.ForeignKey('Service', related_name='posts', on_delete=models.CASCADE)
@@ -70,7 +70,7 @@ class Service(models.Model):
 class SubService(models.Model):
     title = models.CharField(max_length=30)
     image = models.ImageField(upload_to='subservices/')
-    content = models.RichTextField()
+    content = RichTextField()
     fa_icon = models.CharField(max_length=50)
     service = models.ForeignKey('Service', on_delete=models.CASCADE)
 
