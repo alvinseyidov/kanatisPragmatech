@@ -3,71 +3,87 @@
 {% block body %}
 
 		<!-- PAGE CONTENT -->
-		<div class="page-holder custom-page-template page-full fullscreen-page clearfix">
+<div class="page-holder custom-page-template page-full fullscreen-page clearfix">
 
-			<div class="blog_title">
-				<h2>Blog</h2>
-			</div>
-			<!-- SECTION 1-->
-			<section class="blog-1col-list-left">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-9 posts-holder post-sidebar ">
-							<div class="row layout-masonry">
-								{% for post in page_obj %}
-									<div class="col-md-6 blog-item-masonry">
-										<article class="blog-item blog-item-2col-grid">
-											<a href="{% url 'kanatis:blog_detail' post.slug %}">
-												<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
-											</a>
-											<div class="post-holder">
-												<ul class="blog-date">
-													<li class="meta-date">October 10, 2019</li>
-												</ul>
-												<h2 class="blog-title"><a href="{% url 'kanatis:blog_detail' post.slug %}">Thinking Out Of The Box After A Simple Car Accident</a></h2>
-												<div class="article-excerpt"> Arnare varius mauris eu commodo. Aenean nibh risus, rhoncus eget consectetur ac. Consectetur adipiscing elit. Vivamus auctor condimentum sem et gravida. Maecenas id enim pharetra...</div>
-											</div>
-										</article>
-									</div>
-								{% endfor %}
-
-							</div>
-							<!-- /row -->
-							<div class="prev-next">
-								<span class="nav-page"></span>
-								<span class="page-numbers current-page">1</span> 
-								<a class="page-numbers" href="#">2</a>
-								 <a class="page-numbers" href="#">3</a>
-								  <span class="nav-page"><a href="#">&gt;</a></span>
-							</div>
-						</div>
-						<!-- /col-lg-9 -->
-						<div class="col-lg-3">
-							<aside>
-								<ul>
-									<li class="widget">
-										<form method="get" id="search-form" action="#"> <span><input type="text" name="s" id="search-string" placeholder="type and hit enter"></span></form>
-									</li>
-									<li class="widget widget_recent_entries">
-										<h5 class="widgettitle">Recent Posts</h5>
-										<ul>
-											<li> <a href="#">Thinking Out Of The Box After A Simple Car Accident</a></li>
-											<li> <a href="#">Understanding Domestic Violence Defense</a></li>
-											<li> <a href="#">How to Make a Claim Against an Airline</a></li>
-											<li> <a href="#">Internship for Law Students</a></li>
-											<li> <a href="#">Last Will and Testament</a></li>
+	<div class="blog_title">
+		<h2>Blog</h2>
+	</div>
+	<!-- SECTION 1-->
+	<section class="blog-1col-list-left">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-9 posts-holder post-sidebar ">
+					<div class="row layout-masonry">
+						{% for post in page_obj %}
+							<div class="col-md-6 blog-item-masonry">
+								<article class="blog-item blog-item-2col-grid">
+									<a href="{% url 'kanatis:blog_detail' post.slug %}">
+										<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
+									</a>
+									<div class="post-holder">
+										<ul class="blog-date">
+											<li class="meta-date">{{ post.updated_at }}</li>
 										</ul>
-									</li>
-								</ul>
-							</aside>
-						</div>
+										<h2 class="blog-title"><a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title|truncatechars:100 }}</a></h2>
+										<div class="article-excerpt">{{ post.content|truncatechars:320|safe }}</div>
+									</div>
+								</article>
+							</div>
+						{% endfor %}
+
 					</div>
 					<!-- /row -->
+					<!-- <div class="prev-next">
+						<span class="nav-page"><a href="#">&lt;</a></span>
+						<span class="page-numbers current-page">1</span> 
+						<a class="page-numbers" href="#">2</a>
+						<a class="page-numbers" href="#">3</a>
+							<span class="nav-page"><a href="#">&gt;</a></span>
+					</div> -->
+                    {% if is_paginated %}
+                        <div class="prev-next">
+                                {% if page_obj.has_previous %}
+									<span class="nav-page"><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></span>
+                                {% endif %}
+                                {% for p in paginator.page_range %}
+                                    {% if page_obj.number == p %}
+										<span class="page-numbers current-page">{{ p }}</span>
+                                    {% else %}
+										<a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+										<span class="nav-page"><a href="?page={{ page_obj.next_page_number }}">&gt;</a></span>
+                                {% endif %}
+                        </div>
+                    {% endif %}
+
 				</div>
-				<!-- /container -->	
-			</section>
-			<!-- /SECTION 1-->
-			</div><!-- /PAGE CONTENT -->
+				<!-- /col-lg-9 -->
+				<div class="col-lg-3">
+					<aside>
+						<ul>
+							<li class="widget">
+								<form method="get" id="search-form" action="#"> <span><input type="text" name="s" id="search-string" placeholder="type and hit enter"></span></form>
+							</li>
+							<li class="widget widget_recent_entries">
+								<h5 class="widgettitle">Recent Posts</h5>
+								<ul>
+									{% for post in recentposts %}
+										<li><a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title|truncatechars:50 }}</a></li>
+									{% endfor %}
+								</ul>
+							</li>
+						</ul>
+					</aside>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->	
+	</section>
+	<!-- /SECTION 1-->
+	</div><!-- /PAGE CONTENT -->
 	
 {% endblock body %}
 	

@@ -11,22 +11,22 @@
 						<a href="{% url 'kanatis:about' %}">Haqqında</a>
 					</li>
 					<li class="menu-item menu-item-has-children">
-						<a href="{% url 'kanatis:services' %}">XİDMƏTLƏR</a>
+						<a href="{% url 'kanatis:services' %}">sd</a>
 						<ul class="sub-menu">
-							<li class="menu-item menu-item-has-children">
-								<a href="{% url 'kanatis:services-type' %}">Hüquq Xidmətləri</a>
-								<ul class="sub-menu">
-									<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Hüquq</a></li>
-									<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Başqa hüquq</a></li>
-								</ul>
-							</li>
-							<li class="menu-item menu-item-has-children">
-								<a href="{% url 'kanatis:services-type' %}">Sosial Xidmətlər</a>
-								<ul class="sub-menu">
-									<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Sosial</a></li>
-									<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Another sosial</a></li>
-								</ul>
-							</li>
+							{% for service in allservices %}
+								<li class="menu-item menu-item-has-children">
+									<a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a>
+									<ul class="sub-menu">
+										<!-- <li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Hüquq</a></li>
+										<li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Başqa hüquq</a></li> -->
+										{% for subservice in service.subservice.all %}
+										{{ subservice }}
+											<li class="menu-item"><a href="{% url 'kanatis:service-detail' service.slug subservice.slug %}">Hüquq</a></li>
+										{% endfor %}
+									</ul>
+								</li>
+							{% endfor %}
+
 
 						</ul>
 					<li class="menu-item">
@@ -82,20 +82,19 @@
 						<li class="menu-item menu-item-has-children">
 							<a href="{% url 'kanatis:services' %}">XİDMƏTLƏR</a>
 							<ul class="sub-menu">
-								<li class="menu-item menu-item-has-children">
-									<a href="{% url 'kanatis:services-type' %}">Hüquq Xidmətləri</a>
-									<ul class="sub-menu">
-										<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Hüquq</a></li>
-										<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Başqa hüquq</a></li>
-									</ul>
-								</li>
-								<li class="menu-item menu-item-has-children">
-									<a href="{% url 'kanatis:services-type' %}">Sosial Xidmətlər</a>
-									<ul class="sub-menu">
-										<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Sosial</a></li>
-										<li class="menu-item"><a href="{% url 'kanatis:service-detail' %}">Another sosial</a></li>
-									</ul>
-								</li>
+								{% for service in allservices %}
+									<li class="menu-item menu-item-has-children">
+										<a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a>
+										<ul class="sub-menu">
+											<!-- <li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Hüquq</a></li>
+											<li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Başqa hüquq</a></li> -->
+											{% for subservice in service.subservice.all %}
+												<li class="menu-item"><a href="{% url 'kanatis:service-detail' service.slug subservice.slug %}">{{ subservice.title }}</a></li>
+											{% endfor %}
+										</ul>
+									</li>
+								{% endfor %}
+
 
 							</ul>
 						</li>

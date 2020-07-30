@@ -1,10 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.text import slugify
-from django.contrib.auth import get_user_model
-
-
-User = get_user_model()
 
 def latin_slugify(str):
     str = str.replace(" ", "-")
@@ -26,7 +22,6 @@ def latin_slugify(str):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = RichTextField()
-    author = models.ForeignKey(User, on_delete = models.CASCADE)
     image = models.ImageField(upload_to='postimages/')
     category = models.ForeignKey('Service', related_name='posts', on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, null=True, editable=False)
@@ -48,7 +43,7 @@ class Post(models.Model):
 class Carousel(models.Model):
     content = models.CharField(max_length=100,)
     image = models.ImageField(upload_to = 'carousels/')
-    service = models.ForeignKey('Service', on_delete = models.CASCADE)
+    service = models.ForeignKey('Service', related_name='carousels', on_delete = models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -62,9 +57,14 @@ class Service(models.Model):
     description = models.CharField(max_length=100)
     image = models.ImageField(upload_to='services/', null=True, blank=True)
     fa_class = models.CharField(max_length = 50)
+    slug = models.SlugField(unique=True, null=True, editable=False)
     
     def __str__(self):
         return f'{ self.name }'
+
+    def save(self, *args, **kwargs):
+        self.slug = latin_slugify(self.name[:48])
+        super(Service, self).save(*args, **kwargs)
 
 
 class SubService(models.Model):
@@ -72,7 +72,8 @@ class SubService(models.Model):
     image = models.ImageField(upload_to='subservices/')
     content = RichTextField()
     fa_icon = models.CharField(max_length=50)
-    service = models.ForeignKey('Service', on_delete=models.CASCADE)
+    service = models.ForeignKey('Service', related_name='subservice', on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True, null=True, editable=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -80,6 +81,9 @@ class SubService(models.Model):
     def __str__(self):
         return f'{self.title}'
 
+    def save(self, *args, **kwargs):
+        self.slug = latin_slugify(self.title[:48])
+        super(SubService, self).save(*args, **kwargs)
 
 
 class TextPages(models.Model):
@@ -92,6 +96,7 @@ class TextPages(models.Model):
 
 class AboutUs(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
+    img = models.ImageField(upload_to='about/')
     description = RichTextField()
 
     def __str__(self):
@@ -134,6 +139,8 @@ class TeamServices(models.Model):
     class Meta:
         verbose_name_plural = "Komanda Servisləri"
 
+    def __str__(self):
+        return self.service.name
 
 class SertificateTeam(models.Model):
     sertificate = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True)
@@ -141,7 +148,8 @@ class SertificateTeam(models.Model):
 
     class Meta:
         verbose_name_plural = "Komanda Sertifikati"
-
+    def __str__(self):
+        return self.sertificate_name
 
 class Contact(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
@@ -153,6 +161,8 @@ class Contact(models.Model):
     class Meta:
         verbose_name_plural = "Əlaqə"
 
+def __str__(self):
+    return f'{self.email} | {self.address}'
 
 class ContactUs(models.Model):
     name = models.CharField(max_length=255)

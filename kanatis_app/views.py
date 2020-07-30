@@ -4,7 +4,6 @@ from django.views.generic import TemplateView, ListView, DetailView
 from .forms import ContactForm
 from .models import *
 
-
 # Create your views here.
 def common():
     context = {}
@@ -12,13 +11,10 @@ def common():
     context["about"] = AboutUs.objects.order_by('-id').last()
     context['contact'] = Contact.objects.order_by('-id').last()
     context['allservices'] = Service.objects.order_by('-id').all()
-
     return context
-
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["carousels"] = Carousel.objects.all()[:15]
@@ -41,8 +37,8 @@ class BlogPageView(ListView):
         context['contact'] = Contact.objects.order_by('-id').last()
         context["about"] = AboutUs.objects.order_by('-id').last()
         context['allservices'] = Service.objects.order_by('-id').all()
+        context['recentposts'] = Post.objects.order_by('-id')[:8]
         return context
-    
 
 
 class BlogDetailView(DetailView):
@@ -62,39 +58,55 @@ class ServicePageView(ListView):
     paginate_by = 2
     template_name = 'services.html'
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["services"] = Service.objects.all()[:100]
         context['contact'] = Contact.objects.order_by('-id').last()
         context["about"] = AboutUs.objects.order_by('-id').last()
+        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
 
-class SubServicePageView(ListView):
+class SubServicePageView(TemplateView):
     template_name = 'services-type.html'
     model = SubService
 
     def get_context_data(self, **kwargs):
         context = super(SubServicePageView, self).get_context_data(**kwargs)
-        context.update({
-            'all': SubService.objects.all(),
-            'page_title': 'Latest'
-        })
+        # context.update({
+        #     'all': SubService.objects.all(),
+        #     'page_title': 'Latest'
+        # })
+        service = kwargs.get('service')
+        if service:
+            context['servicetypes'] = SubService.objects.order_by('-id').filter(service__slug = service)
         context['contact'] = Contact.objects.order_by('-id').last()
         context["about"] = AboutUs.objects.order_by('-id').last()
+        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
+    
 
 class SubServiceDetailView(TemplateView):
     template_name = 'services-type-detail.html'
-    
+    model = SubService
     def get_context_data(self, **kwargs):
         context = super(SubServiceDetailView, self).get_context_data(**kwargs)
- 
+        subservice = kwargs.get('subservice')
+        if subservice:
+            context['subservice'] = SubService.objects.order_by('-id').filter(slug=subservice).first()
+        
+
         context['contact'] = Contact.objects.order_by('-id').last()
         context["about"] = AboutUs.objects.order_by('-id').last()
+        context['allservices'] = Service.objects.order_by('-id').all()
+        context['subservices'] = SubService.objects.order_by('-id').only('title', 'slug')
+
+
         return context
+    
+    
+    
 
 
 def aboutus(request):

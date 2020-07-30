@@ -11,7 +11,7 @@
 					<div class="slider-caption">
 						<div class="slider-text">
 							<h2>{{ carousel.content }}</h2>
-							<a class="btn-white" href="services-type.html">Ətraflı</a>
+							<a class="btn-white" href="{% url 'kanatis:services-type' carousel.service.slug %}">Ətraflı</a>
 						</div>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 				<div class="row practice-items-holder">
 					{% for service in services %}
 						<div class="col-md-6 col-lg-4 practice-item-4cols">
-							<a href="services-type.html">
+							<a href="{% url 'kanatis:services-type' service.name %}">
 								<div class="practice-item">
 									<div class="practice-icon"><i class="{{ service.fa_class }}"></i></div>
 									<h3 class="practice-title">{{ service.name }}</h3>
@@ -119,7 +119,7 @@
 							{% for post in posts %}
 								<div class="col-md-6 col-lg-4">
 									<article class=" blog-item-2col-grid">
-										<a href="news-single-post.html">
+										<a href=""{% url 'kanatis:blog_detail' post.slug %}">
 											<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
 										</a>
 										<div class="post-holder">

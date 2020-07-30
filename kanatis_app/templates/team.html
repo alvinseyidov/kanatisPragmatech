@@ -21,7 +21,7 @@
                                     <img src='{{ img.url }}' class="img-fluid">
                                 {% endthumbnail %}</a>
                                 <div class="lawyer-position">{{ i.status }}</div>
-                                <h2 class="lawyer-title"><a href="team-single-page.html">{{ i.name }}</a></h2>
+                                <h2 class="lawyer-title"><a href="{{ i.slug }}">{{ i.name }}</a></h2>
                                 <div class="lawyer-excerpt">{{ i.desc|truncatechars:120|safe }}
                                 </div>
                                 <ul class="lawyer-social">

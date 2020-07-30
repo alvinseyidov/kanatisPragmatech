@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!^#79@la@l$y^ta7zk3)r!8h_0^a)w!edazovg1bvvslbi7f3j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -76,12 +76,20 @@ WSGI_APPLICATION = 'kanatis_pro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
+
+
 if DEBUG:
+    print('------------------------')
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'USER': 'test',
+                'NAME': 'test',
+                'PASSWORD': 'test',
+                'HOST': 'localhost',
+                'PORT': '5433',
+            }
     }
 else:
     DATABASES = {
@@ -94,8 +102,6 @@ else:
                 'PORT': os.environ.get('POSTGRES_PORT'),
             }
     }
-
-
 # CKEDITOR
 CKEDITOR_CONFIGS = {
     'default': {

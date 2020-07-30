@@ -12,46 +12,21 @@
 <section class="section-holder">
 	<div class="container">
 		<div class="row practice-items-holder-v2">
-			<div class="col-lg-3 col-md-6">
-				<div class="practice-item-v2">
-					<a href="services-single-page.html">
-						<div class="practice-circle"><i class="fas fa-home"></i></div>
-					</a>
-					<h5 class="practice-title-v2"><a href="services-single-page.html">Ailə hüququ</a></h5>
-					<div class="practice-excerpt">Ailə hüququzu bilin</div>
-					<a class="read-more" href="services-single-page.html">Ətraflı</a>
+			{% for servicetype in servicetypes %}
+				<div class="col-lg-3 col-md-6">
+					<div class="practice-item-v2">
+						<a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">
+							<div class="practice-circle"><i class="{{ servicetype.fa_icon }}"></i></div>
+						</a>
+						<h5 class="practice-title-v2"><a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{{ servicetype.title }}</a></h5>
+						<div class="practice-excerpt">{{ servicetype.content|truncatechars:50|safe }}</div>
+						<a class="read-more" href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">Ətraflı</a>
+					</div>
 				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="practice-item-v2">
-					<a href="services-single-page.html">
-						<div class="practice-circle"><i class="fas fa-money-bill-alt"></i></div>
-					</a>
-					<h5 class="practice-title-v2"><a href="services-single-page.html">Vergi hüququ</a></h5>
-					<div class="practice-excerpt">Vergi hüququ ilə bağlı köməklik</div>
-					<a class="read-more" href="services-single-page.html">Ətraflı</a>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="practice-item-v2">
-					<a href="services-single-page.html">
-						<div class="practice-circle"><i class="far fa-building"></i></div>
-					</a>
-					<h5 class="practice-title-v2"><a href="services-single-page.html">Mənzil hüququ</a></h5>
-					<div class="practice-excerpt">Mənzil hüququ!!!</div>
-					<a class="read-more" href="services-single-page.html">Ətraflı</a>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-6">
-				<div class="practice-item-v2">
-					<a href="services-single-page.html">
-						<div class="practice-circle"><i class="fa fa-tint"></i></div>
-					</a>
-					<h5 class="practice-title-v2"><a href="services-single-page.html">Dəniz hüququ</a></h5>
-					<div class="practice-excerpt">Dəniz hüququ!!!</div>
-					<a class="read-more" href="services-single-page.html">Ətraflı</a>
-				</div>
-			</div>
+			{% endfor %}
+
+
+
 		</div>
 		<!-- /row -->	
 	</div>

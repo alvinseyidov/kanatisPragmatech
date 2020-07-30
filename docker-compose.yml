@@ -43,12 +43,12 @@ services:
       - VIRTUAL_PORT=5432
 
   web:
-    container_name: civillex
+    container_name: kanatis
     build: .
     restart: "always"
     env_file: .env
     environment:
-      - VIRTUAL_HOST=164.90.197.8
+      - VIRTUAL_HOST=134.122.57.243
       - VIRTUAL_PORT=8000
       - TIMEOUT=300
       - HTTP_PORT=8000
