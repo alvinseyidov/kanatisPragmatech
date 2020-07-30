@@ -80,7 +80,6 @@ WSGI_APPLICATION = 'kanatis_pro.wsgi.application'
 
 
 if DEBUG:
-    print('------------------------')
     DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
