@@ -1,8 +1,9 @@
 {% load static %}
+{% load common_tags %}
+{% get_common_models %}
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-
     <meta charset="utf-8">
     <title>Kanatis</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,13 +20,11 @@
     <link rel='stylesheet' id='owl-carousel' href="{% static 'assets/js/owl-carousel/owl.carousel.css' %}"
           type='text/css' media='all'/>
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-
-    <link rel='stylesheet' id='lawyers-style-css' href="{% static 'assets/style.css' %}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='lawyers-style-css' href="{% static 'assets/css/style.css' %}" type='text/css' media='all'/>
     <!-- favicons -->
-    <link rel="icon" href="{% static 'assets/images/icons/favicon-32x32.png" sizes="32x32" /' %}">
-    <link rel="icon" href="{% static 'assets/images/icons/favicon-192x192.png" sizes="192x192" />' %}">
-    <link rel="apple-touch-icon-precomposed" href="{% static 'assets/images/icons/favicon-180x180.png" />' %} ">
+    <link rel="icon" href="{{ logo.image.url }}" />
+    <link rel="icon" href="{{ logo.image.url }}"/>
+    <link rel="apple-touch-icon-precomposed" href="{{ logo.image.url }}" />
 </head>
 <body>
 <div class=" menu-mask"></div>

@@ -112,6 +112,7 @@ env.bak/
 venv.bak/
 .idea/
 Kanatis-Project/
+postgredb/
 
 # Spyder project settings
 .spyderproject

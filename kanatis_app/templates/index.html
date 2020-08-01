@@ -124,10 +124,10 @@
 										</a>
 										<div class="post-holder">
 											<ul class="blog-date">
-												<li class="meta-date">October 10, 2019</li>
+												<li class="meta-date">{{ post.updated_at }}</li>
 											</ul>
-											<h2 class="blog-title"><a href="{% url 'kanatis:blog_detail' post.slug %}">Thinking Out Of The Box After A Simple Car Accident</a></h2>
-											<div class="article-excerpt"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime dicta, nostrum natus suscipit veritatis sequi facere, sunt eaque pariatur ea doloremque cum, odit reiciendis quae minus dolore nobis perferendis beatae. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque facilis odit illo temporibus quo quam veritatis maiores qui, perspiciatis aliquam, nobis distinctio cupiditate quaerat omnis, nemo ullam dolore eligendi recusandae.</div>
+											<h2 class="blog-title"><a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title }}</a></h2>
+											<div class="article-excerpt">{{ post.content|truncatechars:200|safe }}</div>
 										</div>
 									</article>
 								</div>
@@ -156,7 +156,7 @@
 							<div class="icon-box-icon"><i class="fas fa-map-marker-alt"></i></div>
 							<div class="icon-box-content">
 								<div class="icon-box-title">OFFICE</div>
-								<p class="icon-box-description">40 Park Ave, Brooklyn, New York</p>
+								<p class="icon-box-description">{{ contact.address }}</p>
 							</div>
 						</div>
 						<!-- /icon-box-wrapper -->
@@ -164,7 +164,7 @@
 							<div class="icon-box-icon"><i class="fas fa-phone-alt"></i></div>
 							<div class="icon-box-content">
 								<div class="icon-box-title">PHONE</div>
-								<p class="icon-box-description">1-800-000-111</p>
+								<p class="icon-box-description">{{ contact.number }}</p>
 							</div>
 						</div>
 						<!-- /icon-box-wrapper -->
@@ -172,13 +172,12 @@
 							<div class="icon-box-icon"><i class="far fa-envelope"></i></div>
 							<div class="icon-box-content">
 								<div class="icon-box-title">EMAIL</div>
-								<p class="icon-box-description">contact@example.com</p>
+								<p class="icon-box-description">{{ contact.email }}</p>
 							</div>
 						</div>
 						<!-- /icon-box-wrapper -->
 						<div class="gmaps margin-t54">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.9762977047603!2d-73.96009086693977!3d40.69651965846399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25bc1f922373f%3A0x398427d98fba822e!2sPark+Ave%2C+Brooklyn%2C+NY%2C+USA!5e0!3m2!1sen!2sro!4v1471514814808">
-							</iframe>
+							{{ contact.gmap_embed_address|safe }}
 						</div>
 					</div>
 					<div class="col-lg-6">

@@ -2,12 +2,11 @@ from django.contrib import admin
 from .models import *
 
 
-
-
 admin.site.register(Post)
 admin.site.register(Carousel)
 admin.site.register(Service)
 admin.site.register(SubService)
+admin.site.register(Logo)
 
 # Register your models here.
 admin.site.register(AboutUs)

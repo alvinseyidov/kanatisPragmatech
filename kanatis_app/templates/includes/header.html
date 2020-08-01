@@ -1,20 +1,27 @@
 		<!-- MOBILE MENU HOLDER -->
 		{% load static %}
+		{% url 'kanatis:index' as index_path %}
+		{% url 'kanatis:about' as about_path %}
+		{% url 'kanatis:services' as services_path %}
+		{% url 'kanatis:blog' as posts_path %}
+		{% url 'kanatis:teams' as team_path %}
+		{% url 'kanatis:contact' as contact_path %}
+
 		<div class="mobile-menu-holder">
 			<div class="modal-menu-container">
 				<div class="exit-mobile"> <span class="icon-bar1"></span> <span class="icon-bar2"></span></div>
 				<ul class="menu-mobile">
-					<li class="menu-item current-menu-item">
+					<li class="menu-item {% if request.path == index_path %}  current-menu-item {% endif %}">
 						<a href="{% url 'kanatis:index' %}" >ƏSAS SƏHİFƏ</a>
 					</li>
-					<li class="menu-item">
+					<li class="menu-item {% if request.path == about_path %}  current-menu-item {% endif %}">
 						<a href="{% url 'kanatis:about' %}">Haqqında</a>
 					</li>
-					<li class="menu-item menu-item-has-children">
-						<a href="{% url 'kanatis:services' %}">sd</a>
+					<li class="menu-item menu-item-has-children {% if request.path == services_path %}  current-menu-item {% endif %}">
+						<a href="{% url 'kanatis:services' %}">services</a>
 						<ul class="sub-menu">
 							{% for service in allservices %}
-								<li class="menu-item menu-item-has-children">
+								<li class="menu-item menu-item-has-children {% if request.path == services_path %}  current-menu-item {% endif %}">
 									<a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a>
 									<ul class="sub-menu">
 										<!-- <li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Hüquq</a></li>
@@ -29,14 +36,14 @@
 
 
 						</ul>
-					<li class="menu-item">
+					<li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
 						<a href="{% url 'kanatis:blog' %}">Xəbərlər</a>
 					</li>
-					<li class="menu-item">
+					<li class="menu-item {% if request.path == team_path %}  current-menu-item {% endif %}">
 						<a href="{% url 'kanatis:teams' %}">Team</a>
 					</li>
 
-					<li class="menu-item">
+					<li class="menu-item {% if request.path == contact_path %}  current-menu-item {% endif %}">
 						<a href="{% url 'kanatis:contact' %}">Əlaqə</a>
 					</li>
 				</ul>
@@ -69,17 +76,19 @@
 						<li><a class="social-linkedin" href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
 					</ul>
 				</div>
+
+
 				<div class="header-wrap">
 					<div class="logo logo-2"><a href="{% url 'kanatis:index' %}"><img class="img-fluid" src="{% static 'assets/images/kts-01.svg' %}" alt="Lawyers"></a></div>
 					<div class="nav-holder nav-holder-2">
 						<ul class="menu-nav  menu-nav-2">
-						<li class="menu-item current-menu-item">
+						<li class="menu-item {% if request.path == index_path %}  current-menu-item {% endif %}">
 							<a href="{% url 'kanatis:index' %}" >ƏSAS SƏHİFƏ</a>
 						</li>
-						<li class="menu-item">
+						<li class="menu-item {% if request.path == about_path %}  current-menu-item {% endif %}">
 							<a href="{% url 'kanatis:about' %}">Haqqında</a>
 						</li>
-						<li class="menu-item menu-item-has-children">
+						<li class="menu-item menu-item-has-children {% if request.path == services_path %}  current-menu-item {% endif %}">
 							<a href="{% url 'kanatis:services' %}">XİDMƏTLƏR</a>
 							<ul class="sub-menu">
 								{% for service in allservices %}
@@ -98,14 +107,14 @@
 
 							</ul>
 						</li>
-						<li class="menu-item">
+						<li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
 							<a href="{% url 'kanatis:blog' %}">Xəbərlər</a>
 						</li>
-						<li class="menu-item">
+						<li class="menu-item {% if request.path == team_path %}  current-menu-item {% endif %}">
 							<a href="{% url 'kanatis:teams' %}">Team</a>
 						</li>
 
-						<li class="menu-item">
+						<li class="menu-item {% if request.path == contact_path %}  current-menu-item {% endif %}">
 							<a href="{% url 'kanatis:contact' %}">Əlaqə</a>
 						</li>
 					</ul>

@@ -148,11 +148,13 @@ class SertificateTeam(models.Model):
 
     class Meta:
         verbose_name_plural = "Komanda Sertifikati"
+
     def __str__(self):
         return self.sertificate_name
 
 class Contact(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
+    gmap_embed_address = models.CharField('Gmap embeded iframe', max_length=1000)
     email = models.EmailField()
     office_hour = models.CharField(max_length=255, null=True, blank=True)
     number = models.CharField(max_length=255, null=True, blank=True)
@@ -161,8 +163,8 @@ class Contact(models.Model):
     class Meta:
         verbose_name_plural = "Əlaqə"
 
-def __str__(self):
-    return f'{self.email} | {self.address}'
+    def __str__(self):
+        return f'{self.email} | {self.address}'
 
 class ContactUs(models.Model):
     name = models.CharField(max_length=255)
@@ -175,3 +177,10 @@ class ContactUs(models.Model):
 
     class Meta:
         verbose_name_plural = "Əlaqə Form"
+
+class Logo(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='logos/')
+
+    def __str__(self):
+        return f'{self.name}'

@@ -19,10 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('jet/', include('jet.urls', 'jet')),
+    # path('jet/', include('jet.urls', 'jet')),
+    # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+    path('jet_api/', include('jet_django.urls')),
     path('admin/', admin.site.urls),
     path('', include('kanatis_app.urls', namespace='kanatis')),
-    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
 
 
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
