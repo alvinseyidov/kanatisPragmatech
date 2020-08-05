@@ -13,17 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # path('jet/', include('jet.urls', 'jet')),
-    # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
-    path('admin/', admin.site.urls),
+                  # path('jet/', include('jet.urls', 'jet')),
+                  # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
+                  path('admin/', admin.site.urls),
+                  path('rosetta/', include('rosetta.urls'))
+
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
     path('', include('kanatis_app.urls', namespace='kanatis')),
 
+    prefix_default_language=False
 
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+)

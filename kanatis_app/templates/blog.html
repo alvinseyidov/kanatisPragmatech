@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+    {% load i18n %}
 
 		<!-- PAGE CONTENT -->
 <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
 
 	<div class="blog_title">
-		<h2>Blog</h2>
+		<h2>{% trans 'Blog' %}</h2>
 	</div>
 	<!-- SECTION 1-->
 	<section class="blog-1col-list-left">
@@ -67,7 +68,7 @@
 								<form method="get" id="search-form" action="#"> <span><input type="text" name="s" id="search-string" placeholder="type and hit enter"></span></form>
 							</li>
 							<li class="widget widget_recent_entries">
-								<h5 class="widgettitle">Recent Posts</h5>
+								<h5 class="widgettitle">{% trans 'Recent Posts' %}</h5>
 								<ul>
 									{% for post in recentposts %}
 										<li><a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title|truncatechars:50 }}</a></li>

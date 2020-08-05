@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'kanatis_app.apps.KanatisAppConfig',
     'ckeditor',
     'sorl.thumbnail',
-    'widget_tweaks'
+    'widget_tweaks',
+    'rosetta',
+    'modeltranslation'
 ]
 
 MIDDLEWARE = [
@@ -49,10 +51,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # for translation
+
 ]
 
 ROOT_URLCONF = 'kanatis_pro.urls'
-
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -75,29 +81,27 @@ WSGI_APPLICATION = 'kanatis_pro.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-
-
 if DEBUG:
     DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'USER': 'test',
-                'NAME': 'test',
-                'PASSWORD': 'test',
-                'HOST': 'localhost',
-                'PORT': '5433',
-            }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'USER': 'test',
+            'NAME': 'test',
+            'PASSWORD': 'test',
+            'HOST': 'localhost',
+            'PORT': '5433',
+        }
     }
 else:
     DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'USER': os.environ.get('POSTGRES_USER'),
-                'NAME': os.environ.get('POSTGRES_DB'),
-                'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-                'HOST': os.environ.get('POSTGRES_HOST'),
-                'PORT': os.environ.get('POSTGRES_PORT'),
-            }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'USER': os.environ.get('POSTGRES_USER'),
+            'NAME': os.environ.get('POSTGRES_DB'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': os.environ.get('POSTGRES_HOST'),
+            'PORT': os.environ.get('POSTGRES_PORT'),
+        }
     }
 # CKEDITOR
 CKEDITOR_CONFIGS = {
@@ -186,8 +190,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "az"
 
+LANGUAGES = [
+    ("az", "Azerbaijan"),
+    ("en", "English"),
+    ("ru", "Russian"),
+]
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

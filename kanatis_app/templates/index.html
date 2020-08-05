@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+    {% load i18n %}
 		<!-- HOME SLIDER -->
 		<div class="slider-container">
 			<div class="owl-carousel owl-theme home-slider">
@@ -11,7 +12,7 @@
 					<div class="slider-caption">
 						<div class="slider-text">
 							<h2>{{ carousel.content }}</h2>
-							<a class="btn-white" href="{% url 'kanatis:services-type' carousel.service.slug %}">Ətraflı</a>
+							<a class="btn-white" href="{% url 'kanatis:services-type' carousel.service.slug %}">{% trans 'Ətraflı' %}</a>
 						</div>
 					</div>
 				</div>
@@ -29,7 +30,7 @@
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">
 						<div class="intro-msg margin-b108">
-							<div class="intro-normal">Haqqımızda</div>
+							<div class="intro-normal">{% trans 'Haqqımızda' %}</div>
 						</div>
 					</div>
 				</div>
@@ -40,7 +41,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:about' %}">Ətraflı</a></div>
+				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:about' %}">{% trans 'Ətraflı' %}</a></div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
@@ -51,7 +52,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2 alignc">
-						<h2 class="section-heading-title">Xidmətlər</h2>
+						<h2 class="section-heading-title">{% trans 'Xidmətlər' %}</h2>
 					</div>
 				</div>
 					
@@ -69,7 +70,7 @@
 
 				</div>
 				<!-- /row -->
-				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:services' %}">Ətraflı</a></div>
+				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:services' %}">{% trans 'Ətraflı' %}</a></div>
 			</div>
 			<!-- /container -->	
 		</section>
@@ -112,7 +113,7 @@
 		<!-- SECTION 7-->
 		<section class="section-holder">
 			<div class="news_title">
-				<h2>Xəbərlər</h2>
+				<h2>{% trans 'Xəbərlər' %}</h2>
 			</div>
 			<div class="container">
 				<div class="row">
@@ -121,7 +122,7 @@
 							{% for post in posts %}
 								<div class="col-md-6 col-lg-4">
 									<article class=" blog-item-2col-grid">
-										<a href=""{% url 'kanatis:blog_detail' post.slug %}">
+										<a href="{% url 'kanatis:blog_detail' post.slug %}">
 											<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
 										</a>
 										<div class="post-holder">
@@ -140,7 +141,7 @@
 					</div>
 					<!-- /col-lg-12 -->
 				</div>
-				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:blog' %}">Ətraflı</a></div>
+				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:blog' %}">{% trans 'Ətraflı' %}</a></div>
 				<!-- /row -->
 			</div>
 		</section>
@@ -148,16 +149,16 @@
 		<!-- SECTION 9-->
 		<section class="section-holder">
 			<div class="contact_title">
-				<h2>Əlaqə</h2>
+				<h2>{% trans 'Əlaqə' %}</h2>
 			</div>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 margin-bm54">
-						<span class="heading-subtitle">Əlaqə</span>
+						<span class="heading-subtitle">{% trans 'Əlaqə' %}</span>
 						<div class="icon-box-wrapper">
 							<div class="icon-box-icon"><i class="fas fa-map-marker-alt"></i></div>
 							<div class="icon-box-content">
-								<div class="icon-box-title">OFFICE</div>
+								<div class="icon-box-title">{% trans 'OFFICE' %}</div>
 								<p class="icon-box-description">{{ contact.address }}</p>
 							</div>
 						</div>
@@ -165,7 +166,7 @@
 						<div class="icon-box-wrapper">
 							<div class="icon-box-icon"><i class="fas fa-phone-alt"></i></div>
 							<div class="icon-box-content">
-								<div class="icon-box-title">PHONE</div>
+								<div class="icon-box-title">{% trans 'PHONE' %}</div>
 								<p class="icon-box-description">{{ contact.number }}</p>
 							</div>
 						</div>
@@ -173,7 +174,7 @@
 						<div class="icon-box-wrapper">
 							<div class="icon-box-icon"><i class="far fa-envelope"></i></div>
 							<div class="icon-box-content">
-								<div class="icon-box-title">EMAIL</div>
+								<div class="icon-box-title">{% trans 'EMAIL' %}</div>
 								<p class="icon-box-description">{{ contact.email }}</p>
 							</div>
 						</div>

@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-05 14:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: kanatis_app/templates/blog-detail.html:10 kanatis_app/templates/blog.html:10
+msgid "Blog"
+msgstr ""
+
+#: kanatis_app/templates/blog.html:71
+msgid "Recent Posts"
+msgstr ""
+
+#: kanatis_app/templates/contact.html:8 kanatis_app/templates/index.html:153
+#: kanatis_app/templates/index.html:158
+msgid "Əlaqə"
+msgstr ""
+
+#: kanatis_app/templates/contact.html:15
+msgid "Address"
+msgstr ""
+
+#: kanatis_app/templates/contact.html:18
+msgid "Phone"
+msgstr ""
+
+#: kanatis_app/templates/contact.html:21
+msgid "Office Hours"
+msgstr ""
+
+#: kanatis_app/templates/index.html:15 kanatis_app/templates/index.html:44
+#: kanatis_app/templates/index.html:73 kanatis_app/templates/index.html:145
+#: kanatis_app/templates/services.html:26
+msgid "Ətraflı"
+msgstr ""
+
+#: kanatis_app/templates/index.html:33
+msgid "Haqqımızda"
+msgstr ""
+
+#: kanatis_app/templates/index.html:55
+#: kanatis_app/templates/services-type-detail.html:25
+#: kanatis_app/templates/services.html:7
+#: kanatis_app/templates/team-single-page.html:37
+msgid "Xidmətlər"
+msgstr ""
+
+#: kanatis_app/templates/index.html:117
+msgid "Xəbərlər"
+msgstr ""
+
+#: kanatis_app/templates/index.html:162
+msgid "OFFICE"
+msgstr ""
+
+#: kanatis_app/templates/index.html:170
+msgid "PHONE"
+msgstr ""
+
+#: kanatis_app/templates/index.html:178
+msgid "EMAIL"
+msgstr ""
+
+#: kanatis_app/templates/services-type.html:7
+msgid "Hüquqi Xidmətlər"
+msgstr ""
