@@ -59,7 +59,7 @@
 				<div class="row practice-items-holder">
 					{% for service in services %}
 						<div class="col-md-6 col-lg-4 practice-item-4cols">
-							<a href="{% url 'kanatis:services-type' service.name %}">
+							<a href="{% url 'kanatis:services-type' service.slug %}">
 								<div class="practice-item">
 									<div class="practice-icon"><i class="{{ service.fa_class }}"></i></div>
 									<h3 class="practice-title">{{ service.name }}</h3>
