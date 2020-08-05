@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+    {% load i18n %}
 	<!-- TOP IMAGE -->
 	<div class="service_title">
-		<h2>Xidmətlər</h2>
+		<h2>{% trans 'Xidmətlər' %}</h2>
 	</div>
 	<!-- /TOP IMAGE -->
 	<!-- PAGE CONTENT -->
@@ -22,7 +23,7 @@
 									<div class="practice-excerpt">
 										{{ service.description }}
 									</div>
-									<a class="read-more" href="{% url 'kanatis:services-type' service.slug %}">Ətraflı</a>
+									<a class="read-more" href="{% url 'kanatis:services-type' service.slug %}">{% trans 'Ətraflı' %}</a>
 								</div>
 							</div>
 						{% endfor %}

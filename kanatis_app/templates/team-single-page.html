@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
+    {% load i18n %}
     {% load thumbnail %}
     <!-- PAGE CONTENT -->
     <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
@@ -33,7 +34,7 @@
                             {% endif %}
                         </ul>
                         <hr/>
-                        <h5 class="widgettitle">Xidmətlər</h5>
+                        <h5 class="widgettitle">{% trans 'Xidmətlər' %}</h5>
                         <div class="sidebar widget_recent_entries">
                             <ul>
                                 {% for i in services %}
