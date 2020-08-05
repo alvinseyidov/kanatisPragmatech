@@ -75,38 +75,40 @@
 		</section>
 
 
+		{% comment %}
 		<!-- SECTION 5-->
-		<section class="section-holder">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 offset-lg-2 alignc">
-						<h2 class="section-heading-title">Komanda</h2>
-					</div>
-				</div>
-				<!-- /row -->
-				<div class="row">
-					{% for team in teams %}
-					<div class="col-lg-3 col-md-6">
-						<div class="lawyer-holder lawyer-3col">
-							<a href="{% url 'kanatis:detail_team' team.slug %}"><img src="{{ team.img.url }}" class="img-fluid" alt="" ></a>
-							<div class="lawyer-position">{{ team.sttus }}</div>
-							<h2 class="lawyer-title"><a href="{% url 'kanatis:detail_team' team.slug %}">{{ team.name }}</a></h2>
-							<div class="lawyer-excerpt">{{ team.desc|truncatechars:120|safe }}</div>
-							<ul class="lawyer-social">
-								<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
-							</ul>
+			<section class="section-holder">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 offset-lg-2 alignc">
+							<h2 class="section-heading-title">Komanda</h2>
 						</div>
 					</div>
-					{% endfor %}
+					<!-- /row -->
+					<div class="row">
+						{% for team in teams %}
+						<div class="col-lg-3 col-md-6">
+							<div class="lawyer-holder lawyer-3col">
+								<a href="{% url 'kanatis:detail_team' team.slug %}"><img src="{{ team.img.url }}" class="img-fluid" alt="" ></a>
+								<div class="lawyer-position">{{ team.sttus }}</div>
+								<h2 class="lawyer-title"><a href="{% url 'kanatis:detail_team' team.slug %}">{{ team.name }}</a></h2>
+								<div class="lawyer-excerpt">{{ team.desc|truncatechars:120|safe }}</div>
+								<ul class="lawyer-social">
+									<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+									<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+									<li><a href="mailto:" target="_blank"><i class="far fa-envelope"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					<!-- /row -->
+					<div class="view-more alignc"><a href="{% url 'kanatis:teams' %}">Ətraflı</a></div>
 				</div>
-				<!-- /row -->
-				<div class="view-more alignc"><a href="{% url 'kanatis:teams' %}">Ətraflı</a></div>
-			</div>
-			<!-- /container -->	
-		</section>
-		<!-- /SECTION 5-->	
+				<!-- /container -->	
+			</section>
+		<!-- /SECTION 5	 -->
+		{% endcomment %}
 		<!-- SECTION 7-->
 		<section class="section-holder">
 			<div class="news_title">

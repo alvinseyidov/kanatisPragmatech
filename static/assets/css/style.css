@@ -134,7 +134,7 @@ a:focus {
 a,
 .pcolor {
 	text-decoration: none;
-	color: #ff6666;
+	color: #402984;
 }
 
 a:hover {
@@ -420,7 +420,7 @@ blockquote cite {
 	content: "\f105";
 	display: inline-block;
 	padding-right: 8px;
-	color: #ff6666;
+	color: #402984;
 	font-weight: 700;
 	vertical-align: middle;
 }
@@ -617,7 +617,7 @@ a:hover,
 .lawyer-title a:hover,
 .heading-subtitle,
 .list-items li:before {
-	color: #ff6666;
+	color: #402984;
 }
 
 .page-head,
@@ -643,7 +643,7 @@ a:hover,
 .meta-categ a,
 .tags-single-page a,
 .practice-circle {
-	background-color: #ff6666;
+	background-color: #402984;
 }
 
 .practice-item,
@@ -663,7 +663,7 @@ a:hover,
 .current-page:hover,
 .meta-categ a,
 .heading-subtitle {
-	border-color: #ff6666;
+	border-color: #402984;
 }
 
 .widget_categories ul li a,
@@ -676,7 +676,7 @@ a:hover,
 .menu-nav ul,
 .scrollup i,
 .mobile-menu-holder {
-	background: #212D3A;
+	background: #303030;
 }
 
 .header-info .fa-phone,
@@ -723,18 +723,18 @@ blockquote,
 .menu-nav li.current-menu-item .sub-menu li a:hover,
 .menu-mobile li:hover>a,
 .menu-mobile li.current-menu-item>a {
-	color: #ff6666;
+	color: #402984;
 }
 
 .menu-nav li.current-menu-item>a,
 .menu-nav>li.current-menu-ancestor>a {
-	color: #ff6666;
-	border: 1px solid #ff6666;
+	color: #402984;
+	border: 1px solid #402984;
 }
 
 .menu-nav>li.current-menu-ancestor .sub-menu li.current-menu-ancestor>a,
 .sub-menu li.current-menu-item>a {
-	color: #ff6666;
+	color: #402984;
 	border: none;
 }
 
@@ -753,7 +753,7 @@ blockquote,
 
 #footer-var1,
 #footer-var2 {
-	background: #212D3A;
+	background: #303030;
 	color: #ffffff;
 }
 
@@ -827,7 +827,7 @@ a.btn-white {
 	background-color: transparent;
 	color: white;
 	outline: none;
-	border: 1px solid #ff6666;
+	border: 1px solid #402984;
 	padding: 5px;
 }
 
@@ -1072,7 +1072,7 @@ a.btn-white {
 
 .menu-mobile li:hover>a,
 .menu-mobile li.current-menu-item>a {
-	color: #ff6666;
+	color: #402984;
 	text-decoration: none;
 }
 
@@ -1286,7 +1286,7 @@ body.has-active-menu {
 }
 
 .social-media li a:hover {
-	color: #ff6666;
+	color: #402984;
 }
 
 .social-media li:first-child {
@@ -1581,7 +1581,7 @@ a.btn-white:hover {
 
 .icon-box-icon{
 	font-size: 32px;
-	color: #ff6666;
+	color: #402984;
 	margin-right: 16px;
 }
 
@@ -1629,7 +1629,7 @@ font-weight: 600;
 
 .simple-icon{
 	font-size: 32px;
-	color: #ff6666;
+	color: #402984;
 	margin-bottom: 16px;
 }
 
@@ -1718,7 +1718,7 @@ width: 100%;
 flex-direction: row;
 text-align: left;
 align-items: center;
-background: #ff6666;
+background: #402984;
 }
 
 .progress-text{
@@ -1747,7 +1747,7 @@ padding-left: 15px;
 }
 
 .contact-info i{
-	color: #ff6666;
+	color: #402984;
 	font-size: 20px;
 	margin-right: 8px;
 }
@@ -1785,7 +1785,7 @@ padding-left: 15px;
 .practice-item {
 	padding: 24px;
 	margin-bottom: 32px;
-	border: 1px solid #ff6666;
+	border: 1px solid #402984;
 }
 
 .practice-items-holder a:hover {
@@ -1864,7 +1864,7 @@ padding-left: 15px;
 	text-align: center;
 	border-radius: 99em;
 	color: #ffffff;
-	background: #ff6666;
+	background: #402984;
 	display: inline-block;
 	margin-bottom: 16px;
 }
@@ -1886,7 +1886,7 @@ padding-left: 15px;
 }
 
 .practice-title-v2 a:hover {
-	color: #ff6666;
+	color: #402984;
 	text-decoration: none;
 }
 
@@ -1913,7 +1913,7 @@ background-size: cover;
 	padding: 12px 24px;
 	text-align: center;
 	color: #ffffff;
-	border: 1px solid #ff6666;
+	border: 1px solid #402984;
 }
 
 .view-more a:hover {
@@ -1935,7 +1935,7 @@ text-decoration: none;
 .read-more {
 	font-size: 13px;
 	font-weight: 700;
-	color: #ff6666;
+	color: #402984;
 	letter-spacing: 0.02em;
 	text-transform: uppercase;
 }
@@ -1965,7 +1965,7 @@ text-decoration: none;
 }
 
 .lawyer-title a:hover {
-	color: #ff6666;
+	color: #402984;
 	text-decoration: none;
 }
 
@@ -1982,7 +1982,7 @@ text-decoration: none;
 	font-size: 12px;
 	font-weight: 600;
 	letter-spacing: 0.03em;
-	color: #ff6666;
+	color: #402984;
 	margin-top: 24px;
 }
 
@@ -2009,7 +2009,7 @@ text-decoration: none;
 	line-height: 30px;
 	text-align: center;
 	display: block;
-	border: 2px solid #ff6666;
+	border: 2px solid #402984;
 }
 
 .lawyer-social li a:hover {
@@ -2102,7 +2102,7 @@ text-decoration: none;
 	margin-top: 32px;
 	margin-left: auto;
 	margin-right: auto;
-	border: 5px solid #ff6666;
+	border: 5px solid #402984;
 }
 
 .circle-title {
@@ -2110,7 +2110,7 @@ text-decoration: none;
 }
 
 .section-about3{
-	background: #ff6666;
+	background: #402984;
 }
 
 .section-about5{
@@ -2224,7 +2224,7 @@ margin-bottom: 32px;
 }
 
 .faq-title:hover{
-	border-color: #ff6666;
+	border-color: #402984;
 }
 
 .faq-list {
@@ -2245,7 +2245,7 @@ margin-bottom: 32px;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 12px;
-color: #ff6666;
+color: #402984;
 }
 
 .faq-title.active a:before {
@@ -2256,11 +2256,11 @@ color: #ff6666;
 .faq-title a:hover,
 .faq-title.active a {
 	text-decoration: none;
-	color: #ff6666;
+	color: #402984;
 }
 
 .faq-title.active{
-	border-color: #ff6666;
+	border-color: #402984;
 }
 
 .faq-section {
@@ -2582,7 +2582,7 @@ color: #ff6666;
 
 .portfolio-filter li a.current,
 .portfolio-filter li a:hover {
-	color: #ff6666;
+	color: #402984;
 	text-decoration: none;
 }
 
@@ -2602,7 +2602,7 @@ color: #ff6666;
 .case-info{
 	color: #ffffff;
 	padding: 20px;
-	background: #ff6666;
+	background: #402984;
 }
 
 .case-info-list{
@@ -2737,8 +2737,8 @@ color: #ff6666;
 
 .meta-categ a,
 .blog-date li.meta-sticky {
-	background: #ff6666;
-	border: 2px solid #ff6666;
+	background: #402984;
+	border: 2px solid #402984;
 	color: #ffffff;
 	padding: 2px 12px;
 }
@@ -2755,7 +2755,7 @@ color: #ff6666;
 .meta-categ a:hover {
 	text-decoration: none;
 	background: #ffffff;
-	color: #ff6666;
+	color: #402984;
 }
 
 .blog-button {
@@ -2768,7 +2768,7 @@ color: #ff6666;
 	font-weight: 700;
 	padding: 12px 24px;
 	text-align: center;
-	border: 3px solid #ff6666;
+	border: 3px solid #402984;
 }
 
 .blog-button a:hover {
@@ -2900,7 +2900,7 @@ color: #ff6666;
 }
 
 .author-single-page h3 a:hover {
-	color: #ff6666;
+	color: #402984;
 }
 
 .author-content .social-media {
@@ -2961,7 +2961,7 @@ aside ul,
 .widget_meta li a:hover,
 .widget_nav_menu li a:hover {
 	text-decoration: none;
-	color: #ff6666;
+	color: #402984;
 }
 
 .widget_categories ul li:before,
@@ -2974,7 +2974,7 @@ aside ul,
 	content: "\f105";
 	display: inline-block;
 	padding-right: 8px;
-	color: #ff6666;
+	color: #402984;
 	font-weight: 700;
 	vertical-align: middle;
 }
@@ -2993,8 +2993,8 @@ aside ul,
 	padding: 4px 12px;
 	display: inline-block;
 	color: #ffffff;
-	border: 3px solid #ff6666;
-	background: #ff6666;
+	border: 3px solid #402984;
+	background: #402984;
 	font-size: 13px !important;
 	letter-spacing: 0.03em;
 }
@@ -3288,8 +3288,8 @@ p.contact-btn {
 	font-size: 13px;
 	font-weight: 600;
 	letter-spacing: 0.05em;
-	color: #ff6666;
-	border-bottom: 3px solid #ff6666;
+	color: #402984;
+	border-bottom: 3px solid #402984;
 	line-height: 1.2;
 	margin-bottom: 16px;
 	display: inline-block;
@@ -3340,14 +3340,14 @@ text-align: center;
 .price-title {
     font-size: 72px;
     font-weight: 600;
-    color: #ff6666;
+    color: #402984;
 	margin-bottom: 16px;
 }
 
 .price-title {
 	font-size: 72px;
 	font-weight: 600;
-	color: #ff6666;
+	color: #402984;
 }
 
 .price-title sup {
@@ -3459,7 +3459,7 @@ footer {
 	text-align: center;
 	font-weight: 700;
 	background: none;
-	border: 3px solid #ff6666;
+	border: 3px solid #402984;
 }
 
 #submit-evaluation {
@@ -3468,7 +3468,7 @@ footer {
 
 .post-password-form input[type="submit"] {
 	width: auto;
-	color: #ff6666;
+	color: #402984;
 }
 
 #submit-evaluation:hover,
@@ -3527,8 +3527,8 @@ footer {
 .output2 {
 	padding: 16px;
 	display: inline-block;
-	border: 1px solid #ff6666;
-	color: #ff6666;
+	border: 1px solid #402984;
+	color: #402984;
 }
 
 .page-numbers,
@@ -3540,7 +3540,7 @@ footer {
 	text-decoration: none;
 	font-weight: 700;
 	display: inline-block;
-	border: 3px solid #ff6666;
+	border: 3px solid #402984;
 }
 
 .page-numbers:hover,
@@ -3548,7 +3548,7 @@ footer {
 .page-numbers.current-page:hover,
 .nav-page a:hover,
 .page-links a:hover {
-	background: #ff6666;
+	background: #402984;
 	color: #ffffff;
 }
 
@@ -3708,7 +3708,7 @@ footer {
 .owl-theme .owl-dots .owl-dot span {
 	width: 7px;
 	height: 7px;
-	background: #ff6666;
+	background: #402984;
 	display: block;
 	border-radius: 99em;
 	opacity: 0.7;

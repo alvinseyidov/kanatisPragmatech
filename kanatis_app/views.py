@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView
-
 from .forms import ContactForm
 from .models import *
 
@@ -13,6 +12,7 @@ def common():
     context['allservices'] = Service.objects.order_by('-id').all()
     return context
 
+
 class HomePageView(TemplateView):
     template_name = 'index.html'
     def get_context_data(self, **kwargs):
@@ -20,7 +20,6 @@ class HomePageView(TemplateView):
         context["carousels"] = Carousel.objects.all()[:15]
         context["services"] = Service.objects.order_by('-id')[:3]
         context["posts"] = Post.objects.order_by('-id')[:3]
-        context["teams"] = Team.objects.order_by('-id')[:4]
         context["about"] = AboutUs.objects.order_by('-id').last()
         context['contact'] = Contact.objects.order_by('-id').last()
         context['allservices'] = Service.objects.order_by('-id').all()
@@ -73,10 +72,6 @@ class SubServicePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(SubServicePageView, self).get_context_data(**kwargs)
-        # context.update({
-        #     'all': SubService.objects.all(),
-        #     'page_title': 'Latest'
-        # })
         service = kwargs.get('service')
         if service:
             context['servicetypes'] = SubService.objects.order_by('-id').filter(service__slug = service)
@@ -85,7 +80,6 @@ class SubServicePageView(TemplateView):
         context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
-    
 
 class SubServiceDetailView(TemplateView):
     template_name = 'services-type-detail.html'
@@ -93,21 +87,16 @@ class SubServiceDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(SubServiceDetailView, self).get_context_data(**kwargs)
         subservice = kwargs.get('subservice')
+        service = kwargs.get('service')
         if subservice:
             context['subservice'] = SubService.objects.order_by('-id').filter(slug=subservice).first()
-        
-
+        if service:
+            context['subservices'] = SubService.objects.order_by('-id').filter(service__slug = service)
         context['contact'] = Contact.objects.order_by('-id').last()
         context["about"] = AboutUs.objects.order_by('-id').last()
         context['allservices'] = Service.objects.order_by('-id').all()
-        context['subservices'] = SubService.objects.order_by('-id').only('title', 'slug')
-
-
         return context
     
-    
-    
-
 
 def aboutus(request):
     context = common()
