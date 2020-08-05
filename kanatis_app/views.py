@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView
 from .forms import ContactForm
 from .models import *
+from django.utils import translation
+
 
 # Create your views here.
 def common():
@@ -13,8 +15,26 @@ def common():
     return context
 
 
+def set_language(request, lang_code):
+    lang = request.META.get("HTTP_REFERER", None)
+    if not lang:
+        lang = "/"
+    if "az" in lang:
+        lang = lang.replace("az", lang_code)
+    elif "en" in lang:
+        lang = lang.replace("en", lang_code)
+    elif "ru" in lang:
+        lang = lang.replace("ru", lang_code)
+
+    response = redirect(lang)
+    request.session[translation.LANGUAGE_SESSION_KEY] = lang_code
+
+    return response
+
+
 class HomePageView(TemplateView):
     template_name = 'index.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["carousels"] = Carousel.objects.all()[:15]
@@ -74,7 +94,7 @@ class SubServicePageView(TemplateView):
         context = super(SubServicePageView, self).get_context_data(**kwargs)
         service = kwargs.get('service')
         if service:
-            context['servicetypes'] = SubService.objects.order_by('-id').filter(service__slug = service)
+            context['servicetypes'] = SubService.objects.order_by('-id').filter(service__slug=service)
         context['contact'] = Contact.objects.order_by('-id').last()
         context["about"] = AboutUs.objects.order_by('-id').last()
         context['allservices'] = Service.objects.order_by('-id').all()
@@ -84,6 +104,7 @@ class SubServicePageView(TemplateView):
 class SubServiceDetailView(TemplateView):
     template_name = 'services-type-detail.html'
     model = SubService
+
     def get_context_data(self, **kwargs):
         context = super(SubServiceDetailView, self).get_context_data(**kwargs)
         subservice = kwargs.get('subservice')
@@ -91,12 +112,12 @@ class SubServiceDetailView(TemplateView):
         if subservice:
             context['subservice'] = SubService.objects.order_by('-id').filter(slug=subservice).first()
         if service:
-            context['subservices'] = SubService.objects.order_by('-id').filter(service__slug = service)
+            context['subservices'] = SubService.objects.order_by('-id').filter(service__slug=service)
         context['contact'] = Contact.objects.order_by('-id').last()
         context["about"] = AboutUs.objects.order_by('-id').last()
         context['allservices'] = Service.objects.order_by('-id').all()
         return context
-    
+
 
 def aboutus(request):
     context = common()
@@ -121,7 +142,7 @@ def detail_team(request, slug):
 
 def contactus(request):
     context = common()
-    
+
     form = ContactForm()
     context['form'] = form
     if request.method == 'POST':

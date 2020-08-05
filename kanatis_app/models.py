@@ -2,6 +2,7 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.text import slugify
 
+
 def latin_slugify(str):
     str = str.replace(" ", "-")
     str = str.replace("?", "-")
@@ -18,6 +19,7 @@ def latin_slugify(str):
     str = str.replace("Ö", "o")
     str = str.replace("Ü", "u")
     return str.lower()
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -41,26 +43,26 @@ class Post(models.Model):
 
 
 class Carousel(models.Model):
-    content = models.CharField(max_length=100,)
-    image = models.ImageField(upload_to = 'carousels/')
-    service = models.ForeignKey('Service', related_name='carousels', on_delete = models.CASCADE)
+    content = models.CharField(max_length=100, )
+    image = models.ImageField(upload_to='carousels/')
+    service = models.ForeignKey('Service', related_name='carousels', on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{ self.service.name }'
+        return f'{self.service.name}'
 
 
 class Service(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     image = models.ImageField(upload_to='services/', null=True, blank=True)
-    fa_class = models.CharField(max_length = 50)
+    fa_class = models.CharField(max_length=50)
     slug = models.SlugField(unique=True, null=True, editable=False)
-    
+
     def __str__(self):
-        return f'{ self.name }'
+        return f'{self.name}'
 
     def save(self, *args, **kwargs):
         self.slug = latin_slugify(self.name[:48])
@@ -84,6 +86,17 @@ class SubService(models.Model):
     def save(self, *args, **kwargs):
         self.slug = latin_slugify(self.title[:48])
         super(SubService, self).save(*args, **kwargs)
+
+class SocialNetwork(models.Model):
+    name = models.CharField(max_length=255)
+    url = models.URLField(max_length=255)
+    icon = models.CharField(max_length=55)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class TextPages(models.Model):
@@ -142,6 +155,7 @@ class TeamServices(models.Model):
     def __str__(self):
         return self.service.name
 
+
 class SertificateTeam(models.Model):
     sertificate = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True)
     sertificate_name = models.CharField(max_length=255, null=True, blank=True)
@@ -152,9 +166,11 @@ class SertificateTeam(models.Model):
     def __str__(self):
         return self.sertificate_name
 
+
 class Contact(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
     gmap_embed_address = models.CharField('Gmap embeded iframe', max_length=1000)
+    social_networks = models.ManyToManyField('SocialNetwork',)
     email = models.EmailField()
     office_hour = models.CharField(max_length=255, null=True, blank=True)
     number = models.CharField(max_length=255, null=True, blank=True)
@@ -164,7 +180,8 @@ class Contact(models.Model):
         verbose_name_plural = "Əlaqə"
 
     def __str__(self):
-        return f'{self.email} | {self.address}'
+        return f'{ self.email } | { self.address }'
+
 
 class ContactUs(models.Model):
     name = models.CharField(max_length=255)
@@ -178,11 +195,10 @@ class ContactUs(models.Model):
     class Meta:
         verbose_name_plural = "Əlaqə Form"
 
+
 class Logo(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='logos/')
 
     def __str__(self):
         return f'{self.name}'
-
-

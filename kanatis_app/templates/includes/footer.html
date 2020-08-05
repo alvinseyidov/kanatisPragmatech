@@ -40,9 +40,9 @@
                 </div>
             </div>
             <ul class="footer-social alignc">
-                <li><a class="social-facebook" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a class="social-twitter" href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a class="social-linkedin" href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                {% for social in contact.social_networks.all %}
+                <li><a class="social-linkedin" href="{{ social.url }}" target="_blank"><i class="{{ social.icon }}"></i></a></li>
+                {% endfor %}
             </ul>
             <div class="foo-copyright alignc">Copyright &copy; 2020 Kanatis. Designed by Pragmatech</div>
         </div>
