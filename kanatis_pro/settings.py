@@ -23,6 +23,7 @@ SECRET_KEY = '!^#79@la@l$y^ta7zk3)r!8h_0^a)w!edazovg1bvvslbi7f3j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+PROD = not DEBUG
 
 ALLOWED_HOSTS = ['*']
 
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'kanatis_pro.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-if DEBUG:
+if PROD:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -210,7 +211,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if not DEBUG:
+if not PROD:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 else:
     STATICFILES_DIRS = [
