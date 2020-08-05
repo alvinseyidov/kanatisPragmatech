@@ -1,35 +1,35 @@
 from django.contrib import admin
 from .models import *
 
-# admin.site.register(Post)
-# admin.site.register(Carousel)
-admin.site.register(Service)
-admin.site.register(SubService)
 admin.site.register(Logo)
 
-# Register your models here.
-# admin.site.register(AboutUs)
-# admin.site.register(Contact)
 admin.site.register(ContactUs)
 
 
-# admin.site.register(TextPages)
+# class Service(admin.StackedInline):
+#     model = TeamServices
+#     extra = 5
+#     fields =[
+#         'name_az', 'name_en'
+#     ]
+
+# class Sertificate(admin.StackedInline):
+#     model = SertificateTeam
+#     extra = 5
 
 
-class Service(admin.StackedInline):
-    model = TeamServices
-    extra = 5
+# @admin.register(Team)
+# class TeamAdmin(admin.ModelAdmin):
+#     inlines = [Service, Sertificate]
+#     list_display = ['name', 'desc']
 
+@admin.register(SocialNetwork)
+class SocialNetworkAdmin(admin.ModelAdmin):
 
-class Sertificate(admin.StackedInline):
-    model = SertificateTeam
-    extra = 5
-
-
-@admin.register(Team)
-class TeamAdmin(admin.ModelAdmin):
-    inlines = [Service, Sertificate]
-    list_display = ['name', 'desc']
+    def has_add_permission(self, request):
+        if self.model.objects.count() >= 5:
+            return False
+        return super().has_add_permission(request)
 
 
 class PostAdmin(admin.ModelAdmin):
@@ -66,40 +66,36 @@ class CarouselAdmin(admin.ModelAdmin):
 admin.site.register(Carousel, CarouselAdmin)
 
 
-# class ServiceAdmin(admin.ModelAdmin):
-#     fields = [
-#         'name_az', 'name_en', 'name_ru',
-#         'description_az', 'description_en', 'description_ru',
-#         'image', 'fa_class', 'slug'
-#
-#     ]
-#
-#
-# admin.site.register(Service, ServiceAdmin)
-#
-#
-# class SubServiceAdmin(admin.ModelAdmin):
-#     fields = [
-#         'title_az', 'title_en', 'title_ru',
-#         'description_az', 'description_en', 'description_ru',
-#         'image', 'fa_icon', 'service', 'slug',
-#
-#     ]
-#
-#
-# admin.site.register(SubService, SubServiceAdmin)
+class ServiceAdmin(admin.ModelAdmin):
+    fields = [
+        'name_az', 'name_en', 'name_ru',
+        'description_az', 'description_en', 'description_ru',
+        'image', 'fa_class'
 
-#
-# class SubServiceAdmin(admin.ModelAdmin):
-#     fields = [
-#         'team_member_az', 'team_member_en', 'team_member_ru',
-#         'team_az', 'team_en', 'team_ru',
-#         'image', 'fa_icon', 'service', 'slug',
-#
-#     ]
-#
-#
-# admin.site.register(SubService, SubServiceAdmin)
+    ]
+
+
+admin.site.register(Service, ServiceAdmin)
+
+
+class SubServiceAdmin(admin.ModelAdmin):
+    ...
+    # fields = [
+    #     'title_az', 'title_en', 'title_ru',
+    #     'description_az', 'description_en', 'description_ru',
+    #     'image', 'fa_icon', 'service',
+
+    # ]
+
+
+admin.site.register(SubService, SubServiceAdmin)
+
+
+class TeamAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Team, TeamAdmin)
 
 
 class AboutAdmin(admin.ModelAdmin):
@@ -109,6 +105,10 @@ class AboutAdmin(admin.ModelAdmin):
         'img'
 
     ]
+    def has_add_permission(self, request):
+        if self.model.objects.count() >= 1:
+            return False
+        return super().has_add_permission(request)
 
 
 admin.site.register(AboutUs, AboutAdmin)
@@ -117,11 +117,14 @@ admin.site.register(AboutUs, AboutAdmin)
 class ContactAdmin(admin.ModelAdmin):
     fields = [
         'address_az', 'address_en', 'address_ru',
-        'gmap_embed_address_az', 'gmap_embed_address_en', 'gmap_embed_address_ru',
         'text_az', 'text_en', 'text_ru',
-        'gmap_embed_address', 'office_hour', 'number',
+        'gmap_embed_address', 'office_hour', 'number','social_networks'
 
     ]
 
+    def has_add_permission(self, request):
+        if self.model.objects.count() >= 1:
+            return False
+        return super().has_add_permission(request)
 
 admin.site.register(Contact, ContactAdmin)

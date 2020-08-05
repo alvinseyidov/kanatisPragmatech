@@ -87,6 +87,17 @@ class SubService(models.Model):
         self.slug = latin_slugify(self.title[:48])
         super(SubService, self).save(*args, **kwargs)
 
+class SocialNetwork(models.Model):
+    name = models.CharField(max_length=255)
+    url = models.URLField(max_length=255)
+    icon = models.CharField(max_length=55)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return f'{self.name}'
+
 
 class TextPages(models.Model):
     team_member = models.CharField(max_length=255, null=True, blank=True)
@@ -159,6 +170,7 @@ class SertificateTeam(models.Model):
 class Contact(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
     gmap_embed_address = models.CharField('Gmap embeded iframe', max_length=1000)
+    social_networks = models.ManyToManyField('SocialNetwork',)
     email = models.EmailField()
     office_hour = models.CharField(max_length=255, null=True, blank=True)
     number = models.CharField(max_length=255, null=True, blank=True)
@@ -168,7 +180,7 @@ class Contact(models.Model):
         verbose_name_plural = "Əlaqə"
 
     def __str__(self):
-        return f'{self.email} | {self.address}'
+        return f'{ self.email } | { self.address }'
 
 
 class ContactUs(models.Model):

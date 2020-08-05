@@ -29,8 +29,6 @@
                         <li class="menu-item menu-item-has-children {% if request.path == services_path %}  current-menu-item {% endif %}">
                             <a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a>
                             <ul class="sub-menu">
-                                <!-- <li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Hüquq</a></li>
-										<li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Başqa hüquq</a></li> -->
                                 {% for subservice in service.subservice.all %}
                                     {{ subservice }}
                                     <li class="menu-item"><a
@@ -62,9 +60,9 @@
             <li><i class="fa fa-envelope"></i><span>{{ contact.email }}</span></li>
         </ul>
         <ul class="social-media">
-            <li><a class="social-facebook" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a class="social-twitter" href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a class="social-linkedin" href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            {% for social in contact.social_networks.all %}
+            <li><a class="social-facebook" href="{{ social.url }}" target="_blank"><i class="{{ social.icon }}"></i></a></li>
+            {% endfor %}
         </ul>
     </div>
 </div>
@@ -80,17 +78,17 @@
                         class="fa fa-envelope"></i></span> {{ contact.email }}</div>
             </div>
             <ul class="social-media">
-                <li><a class="social-facebook" href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a class="social-twitter" href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a class="social-linkedin" href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                {% for social in contact.social_networks.all %}
+                <li><a class="social-facebook" href="{{ social.url }}" target="_blank"><i class="{{ social.icon }}"></i></a></li>
+                {% endfor %}
             </ul>
         </div>
 
 
         <div class="header-wrap">
             <div class="logo logo-2"><a href="{% url 'kanatis:index' %}"><img class="img-fluid"
-                                                                              src="{% static 'assets/images/kts-01.svg' %}"
-                                                                              alt="Lawyers"></a></div>
+                                                                            src="{% static 'assets/images/kts-01.svg' %}"
+                                                                            alt="Lawyers"></a></div>
             <div class="nav-holder nav-holder-2">
                 <ul class="menu-nav  menu-nav-2">
                     <li class="menu-item {% if request.path == index_path %}  current-menu-item {% endif %}">
@@ -106,8 +104,6 @@
                                 <li class="menu-item menu-item-has-children">
                                     <a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a>
                                     <ul class="sub-menu">
-                                        <!-- <li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Hüquq</a></li>
-											<li class="menu-item"><a href="{% url 'kanatis:service-detail' service.name service.name %}">Başqa hüquq</a></li> -->
                                         {% for subservice in service.subservice.all %}
                                             <li class="menu-item"><a
                                                     href="{% url 'kanatis:service-detail' service.slug subservice.slug %}">{{ subservice.title }}</a>
@@ -134,15 +130,80 @@
             </div>
 
             <div class="lang_select_box">
-                <select name="" id="">
-                    <option value="">
-                        <img src="{% static 'assets/images/azerbaijan.png' %}" alt="">
-                        AZ
-                    </option>
-                    <option value=""><a href="">RU</a></option>
-                    <option value="">EN</option>
-                </select>
-            </div>
+                <ul class="menu-nav menu-nav-2">
+                    <li class="menu-item menu-item-has-children">
+                        <a href="#">{{ LANGUAGE_CODE }}</a>
+                <ul class="sub-menu">
+                        {% for lang in LANGUAGES %}
+                            {% if LANGUAGE_CODE != lang.0 %}
+                                {% if lang.0 == "az" %}
+                                    {% if LANGUAGE_CODE == "az" %}
+                                        {% if lang.0 == LANGUAGE_CODE %}
+                                            <li class="menu-item">
+                                                <a href="{{ request.get_full_path }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="menu-item">
+                                                <a href="{{ request.get_full_path }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if lang.0 == LANGUAGE_CODE %}
+                                            <li class="menu-item">
+                                                <a href="{{ request.get_full_path|slice:"4:" }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="menu-item">
+                                                <a href="/{{ request.get_full_path|slice:"4:" }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    {% if LANGUAGE_CODE == "az" %}
+                                        {% if lang.0 == LANGUAGE_CODE %}
+                                            <li class="menu-item">
+                                                <a href="/{{ lang.0 }}{{ request.get_full_path }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="menu-item">
+                                                <a href="/{{ lang.0 }}{{ request.get_full_path }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if lang.0 == LANGUAGE_CODE %}
+                                            <li class="menu-item">
+                                                <a href="/{{ lang.0 }}/{{ request.get_full_path|slice:"4:" }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% else %}
+                                            <li class="menu-item">
+                                                <a href="/{{ lang.0 }}/{{ request.get_full_path|slice:"4:" }}">
+                                                    {{ lang.0 }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+
+                </ul>
+            </li>
+        </ul>
+              </div>
             <div class="nav-button-holder">
                 <button type="button" class="nav-button"><span class="icon-bar"></span></button>
             </div>
@@ -152,78 +213,78 @@
 <!-- /HEADER -->
 
 
-{#  <ul>#}
-{#                                        <li class="menu-item-has-children"><a style="background-color:rgba(191, 191, 191, 1);"#}
-{#                                                                              href="#">{{ LANGUAGE_CODE }}</a>#}
-{#                                            <ul class="sub-menu">#}
-{#            #}
-{#                                                    {% for lang in LANGUAGES %}#}
-{#                                                        {% if LANGUAGE_CODE != lang.0 %}#}
-{#                                                            {% if lang.0 == "az" %}#}
-{#                                                                {% if LANGUAGE_CODE == "az" %}#}
-{#                                                                    {% if lang.0 == LANGUAGE_CODE %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="{{ request.get_full_path }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% else %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="{{ request.get_full_path }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% endif %}#}
-{#                                                                {% else %}#}
-{#                                                                    {% if lang.0 == LANGUAGE_CODE %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="{{ request.get_full_path|slice:"4:" }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% else %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="/{{ request.get_full_path|slice:"4:" }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% endif %}#}
-{#                                                                {% endif %}#}
-{#                                                            {% else %}#}
-{#                                                                {% if LANGUAGE_CODE == "az" %}#}
-{#                                                                    {% if lang.0 == LANGUAGE_CODE %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="/{{ lang.0 }}{{ request.get_full_path }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% else %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="/{{ lang.0 }}{{ request.get_full_path }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% endif %}#}
-{#                                                                {% else %}#}
-{#                                                                    {% if lang.0 == LANGUAGE_CODE %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="/{{ lang.0 }}/{{ request.get_full_path|slice:"4:" }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% else %}#}
-{#                                                                        <li>#}
-{#                                                                            <a href="/{{ lang.0 }}/{{ request.get_full_path|slice:"4:" }}">#}
-{#                                                                                {{ lang.0 }}#}
-{#                                                                            </a>#}
-{#                                                                        </li>#}
-{#                                                                    {% endif %}#}
-{#                                                                {% endif %}#}
-{#                                                            {% endif %}#}
-{#                                                        {% endif %}#}
-{#                                                    {% endfor %}#}
-{#            #}
-{#                                            </ul>#}
-{#                                        </li>#}
-{#                                    </ul>#}
-		
+<!-- <div class="lang_select_box">
+    <ul class="menu-nav menu-nav-2">
+        <li class="menu-item menu-item-has-children">
+            <a href="#">{{ LANGUAGE_CODE }}</a>
+    <ul class="sub-menu">
+            {% for lang in LANGUAGES %}
+                {% if LANGUAGE_CODE != lang.0 %}
+                    {% if lang.0 == "az" %}
+                        {% if LANGUAGE_CODE == "az" %}
+                            {% if lang.0 == LANGUAGE_CODE %}
+                                <li class="menu-item">
+                                    <a href="{{ request.get_full_path }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="menu-item">
+                                    <a href="{{ request.get_full_path }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            {% if lang.0 == LANGUAGE_CODE %}
+                                <li class="menu-item">
+                                    <a href="{{ request.get_full_path|slice:"4:" }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="menu-item">
+                                    <a href="/{{ request.get_full_path|slice:"4:" }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        {% if LANGUAGE_CODE == "az" %}
+                            {% if lang.0 == LANGUAGE_CODE %}
+                                <li class="menu-item">
+                                    <a href="/{{ lang.0 }}{{ request.get_full_path }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="menu-item">
+                                    <a href="/{{ lang.0 }}{{ request.get_full_path }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            {% if lang.0 == LANGUAGE_CODE %}
+                                <li class="menu-item">
+                                    <a href="/{{ lang.0 }}/{{ request.get_full_path|slice:"4:" }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="menu-item">
+                                    <a href="/{{ lang.0 }}/{{ request.get_full_path|slice:"4:" }}">
+                                        {{ lang.0 }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+    </ul>
+</li>
+</ul>
+  </div> -->
