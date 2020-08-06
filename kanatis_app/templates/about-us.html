@@ -1,27 +1,26 @@
 {% extends 'base.html' %}
 {% block body %}
     {% load i18n %}
-
-    <!-- PAGE CONTENT -->
-    <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
-        <!-- SECTION 1-->
-        <section class="section-holder">
-            <div class="about_title">
-                <h2>{{ about.title }}</h2>
-            </div>
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-7">
-                        <p>{{ about.description|safe }}</p>
-                    </div>
+		<!-- PAGE CONTENT -->
+		<div class="page-holder custom-page-template page-full fullscreen-page clearfix">
+            <!-- SECTION 1-->
+            <section class="section-holder">
+                <div class="about_title">
+                    <h2>{% trans 'About' %}</h2>
                 </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </section>
-
-    </div>
-
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <h2 class="section-heading-title margin-b16">{{ about.title }}</h2>
+                            {{ about.description|safe }}
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /container -->	
+            </section>
+            <!-- /SECTION 1-->	
+        </div>
+        <!-- /PAGE CONTENT -->
 
 {% endblock %}

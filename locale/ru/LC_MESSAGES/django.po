@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-05 14:52+0000\n"
+"POT-Creation-Date: 2020-08-06 09:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,16 +20,27 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: kanatis_app/templates/about-us.html:9
+#: kanatis_app/templates/includes/footer.html:8
+#: kanatis_app/templates/includes/footer.html:33
+#: kanatis_app/templates/includes/header.html:23
+#: kanatis_app/templates/includes/header.html:98
+msgid "About"
+msgstr ""
+
 #: kanatis_app/templates/blog-detail.html:10 kanatis_app/templates/blog.html:10
+#: kanatis_app/templates/includes/footer.html:36
+#: kanatis_app/templates/includes/header.html:45
+#: kanatis_app/templates/includes/header.html:120
 msgid "Blog"
 msgstr ""
 
-#: kanatis_app/templates/blog.html:71
+#: kanatis_app/templates/blog.html:64
 msgid "Recent Posts"
 msgstr ""
 
-#: kanatis_app/templates/contact.html:8 kanatis_app/templates/index.html:153
-#: kanatis_app/templates/index.html:158
+#: kanatis_app/templates/contact.html:8 kanatis_app/templates/index.html:118
+#: kanatis_app/templates/index.html:123
 msgid "Əlaqə"
 msgstr ""
 
@@ -45,14 +56,48 @@ msgstr ""
 msgid "Office Hours"
 msgstr ""
 
-#: kanatis_app/templates/index.html:15 kanatis_app/templates/index.html:44
-#: kanatis_app/templates/index.html:73 kanatis_app/templates/index.html:145
-#: kanatis_app/templates/services.html:26
-msgid "Ətraflı"
+#: kanatis_app/templates/contact.html:37 kanatis_app/templates/index.html:160
+msgid "Send message"
 msgstr ""
 
-#: kanatis_app/templates/index.html:33
-msgid "Haqqımızda"
+#: kanatis_app/templates/includes/footer.html:18
+#: kanatis_app/templates/includes/footer.html:37
+#: kanatis_app/templates/includes/header.html:52
+#: kanatis_app/templates/includes/header.html:127
+msgid "Contact"
+msgstr ""
+
+#: kanatis_app/templates/includes/footer.html:29
+msgid "Links"
+msgstr ""
+
+#: kanatis_app/templates/includes/footer.html:32
+#: kanatis_app/templates/includes/header.html:20
+#: kanatis_app/templates/includes/header.html:95
+msgid "Home"
+msgstr ""
+
+#: kanatis_app/templates/includes/footer.html:34
+#: kanatis_app/templates/includes/header.html:26
+#: kanatis_app/templates/includes/header.html:101
+msgid "Services"
+msgstr ""
+
+#: kanatis_app/templates/includes/footer.html:35
+#: kanatis_app/templates/includes/header.html:48
+#: kanatis_app/templates/includes/header.html:123
+msgid "Team"
+msgstr ""
+
+#: kanatis_app/templates/includes/footer.html:48
+msgid "Copyright"
+msgstr ""
+
+#: kanatis_app/templates/index.html:15 kanatis_app/templates/index.html:44
+#: kanatis_app/templates/index.html:73 kanatis_app/templates/index.html:110
+#: kanatis_app/templates/services-type.html:24
+#: kanatis_app/templates/services.html:26
+msgid "Ətraflı"
 msgstr ""
 
 #: kanatis_app/templates/index.html:55
@@ -62,20 +107,32 @@ msgstr ""
 msgid "Xidmətlər"
 msgstr ""
 
-#: kanatis_app/templates/index.html:117
+#: kanatis_app/templates/index.html:82
 msgid "Xəbərlər"
 msgstr ""
 
-#: kanatis_app/templates/index.html:162
+#: kanatis_app/templates/index.html:127
 msgid "OFFICE"
 msgstr ""
 
-#: kanatis_app/templates/index.html:170
+#: kanatis_app/templates/index.html:135
 msgid "PHONE"
 msgstr ""
 
-#: kanatis_app/templates/index.html:178
+#: kanatis_app/templates/index.html:143 kanatis_app/templates/index.html:156
 msgid "EMAIL"
+msgstr ""
+
+#: kanatis_app/templates/index.html:155
+msgid "Name"
+msgstr ""
+
+#: kanatis_app/templates/index.html:157
+msgid "Subject"
+msgstr ""
+
+#: kanatis_app/templates/index.html:158
+msgid "Message"
 msgstr ""
 
 #: kanatis_app/templates/services-type.html:7

@@ -17,13 +17,13 @@
         <div class="exit-mobile"><span class="icon-bar1"></span> <span class="icon-bar2"></span></div>
         <ul class="menu-mobile">
             <li class="menu-item {% if request.path == index_path %}  current-menu-item {% endif %}">
-                <a href="{% url 'kanatis:index' %}">ƏSAS SƏHİFƏ</a>
+                <a href="{% url 'kanatis:index' %}">{% trans 'Home' %}</a>
             </li>
             <li class="menu-item {% if request.path == about_path %}  current-menu-item {% endif %}">
-                <a href="{% url 'kanatis:about' %}">Haqqında</a>
+                <a href="{% url 'kanatis:about' %}">{% trans 'About' %}</a>
             </li>
             <li class="menu-item menu-item-has-children {% if request.path == services_path %}  current-menu-item {% endif %}">
-                <a href="{% url 'kanatis:services' %}">services</a>
+                <a href="{% url 'kanatis:services' %}">{% trans 'Services' %}</a>
                 <ul class="sub-menu">
                     {% for service in allservices %}
                         <li class="menu-item menu-item-has-children {% if request.path == services_path %}  current-menu-item {% endif %}">
@@ -42,14 +42,14 @@
 
                 </ul>
             <li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
-                <a href="{% url 'kanatis:blog' %}">Xəbərlər</a>
+                <a href="{% url 'kanatis:blog' %}">{% trans 'Blog' %}</a>
             </li>
             <li class="menu-item {% if request.path == team_path %}  current-menu-item {% endif %}">
-                <a href="{% url 'kanatis:teams' %}">Team</a>
+                <a href="{% url 'kanatis:teams' %}">{% trans 'Team' %}</a>
             </li>
 
             <li class="menu-item {% if request.path == contact_path %}  current-menu-item {% endif %}">
-                <a href="{% url 'kanatis:contact' %}">Əlaqə</a>
+                <a href="{% url 'kanatis:contact' %}">{% trans 'Contact' %}</a>
             </li>
         </ul>
     </div>
@@ -92,13 +92,13 @@
             <div class="nav-holder nav-holder-2">
                 <ul class="menu-nav  menu-nav-2">
                     <li class="menu-item {% if request.path == index_path %}  current-menu-item {% endif %}">
-                        <a href="{% url 'kanatis:index' %}">ƏSAS SƏHİFƏ</a>
+                        <a href="{% url 'kanatis:index' %}">{% trans 'Home' %}</a>
                     </li>
                     <li class="menu-item {% if request.path == about_path %}  current-menu-item {% endif %}">
-                        <a href="{% url 'kanatis:about' %}">Haqqında</a>
+                        <a href="{% url 'kanatis:about' %}">{% trans 'About' %}</a>
                     </li>
                     <li class="menu-item menu-item-has-children {% if request.path == services_path %}  current-menu-item {% endif %}">
-                        <a href="{% url 'kanatis:services' %}">XİDMƏTLƏR</a>
+                        <a href="{% url 'kanatis:services' %}">{% trans 'Services' %}</a>
                         <ul class="sub-menu">
                             {% for service in allservices %}
                                 <li class="menu-item menu-item-has-children">
@@ -117,14 +117,14 @@
                         </ul>
                     </li>
                     <li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
-                        <a href="{% url 'kanatis:blog' %}">Xəbərlər</a>
+                        <a href="{% url 'kanatis:blog' %}">{% trans 'Blog' %}</a>
                     </li>
                     <li class="menu-item {% if request.path == team_path %}  current-menu-item {% endif %}">
-                        <a href="{% url 'kanatis:teams' %}">Team</a>
+                        <a href="{% url 'kanatis:teams' %}">{% trans 'Team' %}</a>
                     </li>
 
                     <li class="menu-item {% if request.path == contact_path %}  current-menu-item {% endif %}">
-                        <a href="{% url 'kanatis:contact' %}">Əlaqə</a>
+                        <a href="{% url 'kanatis:contact' %}">{% trans 'Contact' %}</a>
                     </li>
                 </ul>
             </div>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-    {% load i18n %}
+{% load i18n %}
 
 		<!-- PAGE CONTENT -->
 <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
@@ -33,14 +33,7 @@
 						{% endfor %}
 
 					</div>
-					<!-- /row -->
-					<!-- <div class="prev-next">
-						<span class="nav-page"><a href="#">&lt;</a></span>
-						<span class="page-numbers current-page">1</span> 
-						<a class="page-numbers" href="#">2</a>
-						<a class="page-numbers" href="#">3</a>
-							<span class="nav-page"><a href="#">&gt;</a></span>
-					</div> -->
+
                     {% if is_paginated %}
                         <div class="prev-next">
                                 {% if page_obj.has_previous %}

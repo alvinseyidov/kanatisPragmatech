@@ -1,10 +1,11 @@
+{% load i18n %}
 <footer id="footer-var2">
     <div id="footer-content">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="foo-block">
-                        <h5 class="widgettitle">Haqqımızda</h5>
+                        <h5 class="widgettitle">{% trans 'About' %}</h5>
                         <div class="textwidget">
                             <div class="textwidget">
                                 <p>{{ about.description|safe }}</p>
@@ -14,7 +15,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="foo-block">
-                        <h5 class="widgettitle">Əlaqə</h5>
+                        <h5 class="widgettitle">{% trans 'Contact' %}</h5>
                         <div class="textwidget">
                             <div class="textwidget">
                                 <p>{{ contact.address }}</p>
@@ -25,15 +26,15 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="foo-block">
-                        <h5 class="widgettitle">Linklər</h5>
+                        <h5 class="widgettitle">{% trans 'Links' %}</h5>
                         <div class="textwidget custom-html-widget">
                             <ul>
-                                <li> <a href="{% url 'kanatis:index' %}">Əsas Səhifə</a></li>
-                                <li><a href="{% url 'kanatis:about' %}">Haqqımızda</a></li>
-                                <li><a href="{% url 'kanatis:services' %}">Xidmətlər</a></li>
-                                <li><a href="{% url 'kanatis:teams' %}">Team</a></li>
-                                <li><a href="{% url 'kanatis:blog' %}">Xəbərlər</a></li>
-                                <li><a href="{% url 'kanatis:contact' %}">Əlaqə</a></li>
+                                <li> <a href="{% url 'kanatis:index' %}">{% trans 'Home' %}</a></li>
+                                <li><a href="{% url 'kanatis:about' %}">{% trans 'About' %}</a></li>
+                                <li><a href="{% url 'kanatis:services' %}">{% trans 'Services' %}</a></li>
+                                <li><a href="{% url 'kanatis:teams' %}">{% trans 'Team' %}</a></li>
+                                <li><a href="{% url 'kanatis:blog' %}">{% trans 'Blog' %}</a></li>
+                                <li><a href="{% url 'kanatis:contact' %}">{% trans 'Contact' %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                 <li><a class="social-linkedin" href="{{ social.url }}" target="_blank"><i class="{{ social.icon }}"></i></a></li>
                 {% endfor %}
             </ul>
-            <div class="foo-copyright alignc">Copyright &copy; 2020 Kanatis. Designed by Pragmatech</div>
+            <div class="foo-copyright alignc">{% trans 'Copyright' %}</div>
         </div>
     </div>
 </footer>

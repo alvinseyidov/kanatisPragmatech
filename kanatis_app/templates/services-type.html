@@ -21,7 +21,7 @@
 						</a>
 						<h5 class="practice-title-v2"><a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{{ servicetype.title }}</a></h5>
 						<div class="practice-excerpt">{{ servicetype.content|truncatechars:50|safe }}</div>
-						<a class="read-more" href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">Ətraflı</a>
+						<a class="read-more" href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{% trans 'Ətraflı' %}</a>
 					</div>
 				</div>
 			{% endfor %}
