@@ -3,32 +3,38 @@
 {% block body %}
     {% load i18n %}
 
-<div class="service_title">
-	<h2>{% trans 'Hüquqi Xidmətlər' %}</h2>
-</div>
+	
+	{% if servicetypes %}
+		<div class="service_title">
+			<h2>{{ servicetypes.first.service }}</h2>
+		</div>
+	{% else %}
+		<div class="service_title">
+			<h2>{% trans 'Xidmət tapılmadı' %}</h2>
+		</div>
+	{% endif %}
+		
 <!-- PAGE CONTENT -->
 <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
-
 <!-- SECTION 1-->
 <section class="section-holder">
 	<div class="container">
-		<div class="row practice-items-holder-v2">
-			{% for servicetype in servicetypes %}
-				<div class="col-lg-3 col-md-6">
-					<div class="practice-item-v2">
-						<a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">
-							<div class="practice-circle"><i class="{{ servicetype.fa_icon }}"></i></div>
-						</a>
-						<h5 class="practice-title-v2"><a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{{ servicetype.title }}</a></h5>
-						<div class="practice-excerpt">{{ servicetype.content|truncatechars:50|safe }}</div>
-						<a class="read-more" href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{% trans 'Ətraflı' %}</a>
+			<div class="row practice-items-holder-v2">
+				{% for servicetype in servicetypes %}
+					<div class="col-lg-3 col-md-6">
+						<div class="practice-item-v2">
+							<a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">
+								<div class="post-image"><img src="{{ servicetype.image.url }}" class="img-fluid" alt=""></div>
+							</a>
+							<h5 class="practice-title-v2"><a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{{ servicetype.title }}</a></h5>
+							<div class="practice-excerpt">
+								{{ servicetype.content|truncatechars:40|safe }}
+							</div>
+							<a class="read-more" href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{% trans 'Ətraflı' %}</a>
+						</div>
 					</div>
-				</div>
-			{% endfor %}
-
-
-
-		</div>
+				{% endfor %}
+			</div>
 		<!-- /row -->	
 	</div>
 	<!-- /container -->	

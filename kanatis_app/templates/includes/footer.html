@@ -8,7 +8,7 @@
                         <h5 class="widgettitle">{% trans 'About' %}</h5>
                         <div class="textwidget">
                             <div class="textwidget">
-                                <p>{{ about.description|safe }}</p>
+                                <p>{{ about.description|truncatechars:370|safe }}</p>
                             </div>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                         <div class="textwidget">
                             <div class="textwidget">
                                 <p>{{ contact.address }}</p>
-                                <p>{{ contact.number }}<br> {{ contact.email }}</p>
+                                <p>{{ contact.number }} <br>{{ contact.office_phone }} <br> {{ contact.email }}</p>
                             </div>
                         </div>
                     </div>

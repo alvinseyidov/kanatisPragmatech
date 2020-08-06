@@ -34,8 +34,8 @@ class SocialNetworkAdmin(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     fields = [
-        'title_az', 'title_en', 'title_ru',
-        'content_az', 'content_en', 'content_ru',
+        'title_az', 'title_en',
+        'content_az', 'content_en',
         'image', 'category'
 
     ]
@@ -46,8 +46,8 @@ admin.site.register(Post, PostAdmin)
 
 class TextPagesAdmin(admin.ModelAdmin):
     fields = [
-        'team_member_az', 'team_member_en', 'team_member_ru',
-        'team_az', 'team_en', 'team_ru',
+        'team_member_az', 'team_member_en',
+        'team_az', 'team_en',
 
     ]
 
@@ -57,7 +57,7 @@ admin.site.register(TextPages, TextPagesAdmin)
 
 class CarouselAdmin(admin.ModelAdmin):
     fields = [
-        'content_az', 'content_en', 'content_ru',
+        'content_az', 'content_en',
         'image', 'service'
 
     ]
@@ -68,9 +68,9 @@ admin.site.register(Carousel, CarouselAdmin)
 
 class ServiceAdmin(admin.ModelAdmin):
     fields = [
-        'name_az', 'name_en', 'name_ru',
-        'description_az', 'description_en', 'description_ru',
-        'image', 'fa_class'
+        'name_az', 'name_en',
+        'description_az', 'description_en',
+        'image'
 
     ]
 
@@ -100,8 +100,8 @@ admin.site.register(Team, TeamAdmin)
 
 class AboutAdmin(admin.ModelAdmin):
     fields = [
-        'title_az', 'title_en', 'title_ru',
-        'description_az', 'description_en', 'description_ru',
+        'title_az', 'title_en',
+        'description_az', 'description_en',
         'img'
 
     ]
@@ -114,10 +114,25 @@ class AboutAdmin(admin.ModelAdmin):
 admin.site.register(AboutUs, AboutAdmin)
 
 
+class SubAboutAdmin(admin.ModelAdmin):
+    fields = [
+        'title_az', 'title_en',
+        'description_az', 'description_en',
+        'img', 'about'
+
+    ]
+    def has_add_permission(self, request):
+        if self.model.objects.count() >= 10:
+            return False
+        return super().has_add_permission(request)
+
+
+admin.site.register(SubAboutUs, SubAboutAdmin)
+
 class ContactAdmin(admin.ModelAdmin):
     fields = [
-        'address_az', 'address_en', 'address_ru',
-        'text_az', 'text_en', 'text_ru',
+        'address_az', 'address_en',
+        'text_az', 'text_en',
         'gmap_embed_address', 'office_hour', 'number','social_networks'
 
     ]

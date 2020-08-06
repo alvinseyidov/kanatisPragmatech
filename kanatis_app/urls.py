@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (
     HomePageView, ServicePageView, BlogPageView,
     BlogDetailView, aboutus, teams, detail_team,contactus, SubServicePageView,
-    SubServiceDetailView
+    SubServiceDetailView, SubAboutDetailView
 )
 app_name='kanatis'
 
@@ -14,6 +14,7 @@ urlpatterns = [
     path('news/', BlogPageView.as_view(), name='blog'),
     path('news/<str:slug>', BlogDetailView.as_view(), name='blog_detail'),
     path('about/', aboutus, name='about'),
+    path('about/<str:slug>', SubAboutDetailView.as_view(), name='subabout'),
     path('contact/', contactus, name='contact'),
     path('teams/', teams, name='teams'),
     path('teams/<str:slug>/', detail_team, name='detail_team'),

@@ -1,6 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.text import slugify
+from django.utils.translation import ugettext_lazy as _
 
 
 def latin_slugify(str):
@@ -57,8 +58,7 @@ class Carousel(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='services/', null=True, blank=True)
-    fa_class = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='services/')
     slug = models.SlugField(unique=True, null=True, editable=False)
 
     def __str__(self):
@@ -116,11 +116,46 @@ class AboutUs(models.Model):
         return f'{self.title}'
 
     class Meta:
-        verbose_name_plural = "Haqqımızda"
+        verbose_name_plural = "About"
+
+
+class SubAboutUs(models.Model):
+    title = models.CharField(max_length=255, null=True, blank=True)
+    img = models.ImageField(upload_to='subabout/')
+    description = RichTextField()
+    about = models.ForeignKey('AboutUs', related_name='subabouts', on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True, null=True, editable=False)
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = latin_slugify(self.title[:48])
+        super(SubAboutUs, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name_plural = "Sub about"
+
+ORDER = (
+    (1, _("First position")),
+    (2, _("Second position")),
+    (3, _("Third position")),
+    (4, _("Fourth position")),
+    (5, _("fifth position")),
+    (6, _("sixth position")),
+    (7, _("seventh position")),
+    (8, _("eight position")),
+    (9, _("ninenth position")),
+    (10, _("tenth position"))
+)
 
 
 class Team(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
+    order = models.PositiveIntegerField(_('Position ordering'), choices=ORDER, default=2)
     desc = RichTextField()
     status = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
@@ -136,6 +171,7 @@ class Team(models.Model):
 
     class Meta:
         verbose_name_plural = "Komanda"
+
 
     def save(self, *args, **kwargs):
         self.slug = latin_slugify(self.name[:48])
@@ -173,9 +209,10 @@ class Contact(models.Model):
     social_networks = models.ManyToManyField('SocialNetwork',)
     email = models.EmailField()
     office_hour = models.CharField(max_length=255, null=True, blank=True)
-    number = models.CharField(max_length=255, null=True, blank=True)
+    number = models.CharField(max_length=20, null=True, blank=True)
+    office_phone = models.CharField(max_length=20, null=True, blank=True)
     text = RichTextField()
-
+    
     class Meta:
         verbose_name_plural = "Əlaqə"
 

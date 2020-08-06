@@ -9,9 +9,7 @@ from django.utils import translation
 def common():
     context = {}
     context['text'] = TextPages.objects.order_by('-id').last()
-    context["about"] = AboutUs.objects.order_by('-id').last()
     context['contact'] = Contact.objects.order_by('-id').last()
-    context['allservices'] = Service.objects.order_by('-id').all()
     return context
 
 
@@ -23,8 +21,6 @@ def set_language(request, lang_code):
         lang = lang.replace("az", lang_code)
     elif "en" in lang:
         lang = lang.replace("en", lang_code)
-    elif "ru" in lang:
-        lang = lang.replace("ru", lang_code)
 
     response = redirect(lang)
     request.session[translation.LANGUAGE_SESSION_KEY] = lang_code
@@ -38,11 +34,9 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["carousels"] = Carousel.objects.all()[:15]
-        context["services"] = Service.objects.order_by('-id')[:3]
+        context["services"] = Service.objects.order_by('-id')[:4]
         context["posts"] = Post.objects.order_by('-id')[:3]
-        context["about"] = AboutUs.objects.order_by('-id').last()
         context['contact'] = Contact.objects.order_by('-id').last()
-        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
 
@@ -54,8 +48,6 @@ class BlogPageView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['contact'] = Contact.objects.order_by('-id').last()
-        context["about"] = AboutUs.objects.order_by('-id').last()
-        context['allservices'] = Service.objects.order_by('-id').all()
         context['recentposts'] = Post.objects.order_by('-id')[:8]
         return context
 
@@ -67,22 +59,17 @@ class BlogDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['contact'] = Contact.objects.order_by('-id').last()
-        context["about"] = AboutUs.objects.order_by('-id').last()
-        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
 
 class ServicePageView(ListView):
     model = Service
-    paginate_by = 2
     template_name = 'services.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["services"] = Service.objects.all()[:100]
         context['contact'] = Contact.objects.order_by('-id').last()
-        context["about"] = AboutUs.objects.order_by('-id').last()
-        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
 
@@ -96,8 +83,6 @@ class SubServicePageView(TemplateView):
         if service:
             context['servicetypes'] = SubService.objects.order_by('-id').filter(service__slug=service)
         context['contact'] = Contact.objects.order_by('-id').last()
-        context["about"] = AboutUs.objects.order_by('-id').last()
-        context['allservices'] = Service.objects.order_by('-id').all()
         return context
 
 
@@ -114,20 +99,28 @@ class SubServiceDetailView(TemplateView):
         if service:
             context['subservices'] = SubService.objects.order_by('-id').filter(service__slug=service)
         context['contact'] = Contact.objects.order_by('-id').last()
-        context["about"] = AboutUs.objects.order_by('-id').last()
-        context['allservices'] = Service.objects.order_by('-id').all()
         return context
+
+
+class SubAboutDetailView(TemplateView):
+    template_name = 'subabout.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['subabout'] = SubAboutUs.objects.filter(slug = context['slug']).first()
+        context['contact'] = Contact.objects.order_by('-id').last()
+        return context
+    
 
 
 def aboutus(request):
     context = common()
-    context['about'] = AboutUs.objects.order_by('-id').last()
     return render(request, 'about-us.html', context)
 
 
 def teams(request):
     context = common()
-    context['member'] = Team.objects.all().order_by('-id')
+    context['member'] = Team.objects.all().order_by('order')
     return render(request, 'team.html', context)
 
 

@@ -55,20 +55,24 @@
 						<h2 class="section-heading-title">{% trans 'Xidmətlər' %}</h2>
 					</div>
 				</div>
-					
-				<div class="row practice-items-holder">
+	   
+				<div class="row practice-items-holder-v2">
 					{% for service in services %}
-						<div class="col-md-6 col-lg-4 practice-item-4cols">
-							<a href="{% url 'kanatis:services-type' service.slug %}">
-								<div class="practice-item">
-									<div class="practice-icon"><i class="{{ service.fa_class }}"></i></div>
-									<h3 class="practice-title">{{ service.name }}</h3>
+						<div class="col-lg-3 col-md-6">
+							<div class="practice-item-v2">
+								<a href="{% url 'kanatis:services-type' service.slug %}">
+									<div class="post-image"><img src="{{ service.image.url }}" class="img-fluid" alt=""></div>
+								</a>
+								<h5 class="practice-title-v2"><a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a></h5>
+								<div class="practice-excerpt">
+									{{ service.description }}
 								</div>
-							</a>
+								<a class="read-more" href="{% url 'kanatis:services-type' service.slug %}">{% trans 'Ətraflı' %}</a>
+							</div>
 						</div>
 					{% endfor %}
-
 				</div>
+			<!-- /row -->
 				<!-- /row -->
 				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:services' %}">{% trans 'Ətraflı' %}</a></div>
 			</div>

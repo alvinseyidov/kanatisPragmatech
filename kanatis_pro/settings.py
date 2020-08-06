@@ -196,8 +196,8 @@ LANGUAGE_CODE = "az"
 LANGUAGES = [
     ("az", "Azerbaijan"),
     ("en", "English"),
-    ("ru", "Russian"),
 ]
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

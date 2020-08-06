@@ -40,8 +40,13 @@ translator.register(TextPages, TextPagesTranslationOptions)
 class AboutUsTranslationOptions(TranslationOptions):
     fields = ('title', 'description',)
 
-
 translator.register(AboutUs, AboutUsTranslationOptions)
+
+
+class SubAboutUsTranslationOptions(TranslationOptions):
+    fields = ('title', 'description',)
+
+translator.register(SubAboutUs, SubAboutUsTranslationOptions)
 
 
 class TeamTranslationOptions(TranslationOptions):
