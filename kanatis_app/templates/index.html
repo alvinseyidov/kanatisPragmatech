@@ -30,18 +30,18 @@
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">
 						<div class="intro-msg margin-b108">
-							<div class="intro-normal">{{ about.title }}</div>
+							<h2 class="section-heading-title">{{ about.title }}</h2>
 						</div>
 					</div>
 				</div>
 				<!-- /row -->
 				<div class="row">
 					<div class="col-lg-12 margin-bm32">
-						<p>{{ about.description|safe }}
+						<p>{{ about.description|truncatechars:580|safe }}
 						</p>
 					</div>
 				</div>
-				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:about' %}">{% trans 'Ətraflı' %}</a></div>
+				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:about' %}">Ətraflı</a></div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
