@@ -73,7 +73,6 @@ class SubService(models.Model):
     title = models.CharField(max_length=30)
     image = models.ImageField(upload_to='subservices/')
     content = RichTextField()
-    fa_icon = models.CharField(max_length=50)
     service = models.ForeignKey('Service', related_name='subservice', on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, null=True, editable=False)
 

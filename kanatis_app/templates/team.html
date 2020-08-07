@@ -20,6 +20,9 @@
 
                                 <a href="{% url 'kanatis:detail_team' i.slug %}"> {% thumbnail i.img "300x380" crop="center" as img %}
                                     <img src='{{ img.url }}' class="img-fluid">
+                                    {% comment %}
+                                        600px 550px
+                                    {% endcomment %}
                                 {% endthumbnail %}</a>
                                 <div class="lawyer-position">{{ i.status }}</div>
                                 <h2 class="lawyer-title"><a href="{{ i.slug }}">{{ i.name }}</a></h2>

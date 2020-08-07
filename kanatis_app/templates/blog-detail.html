@@ -16,6 +16,9 @@
 						<div class="col-lg-12 posts-holder post-sidebar ">
 							<article class="single-article-container">
 								<div class="post-image"> <img src="{{ object.image.url }}" class="img-fluid" alt=""></div>
+								{% comment %}
+									1200px 600px
+							  {% endcomment %}
 								<ul class="blog-date">
 									<li class="meta-author"><i class="fa fa-user"></i>{{ object.author.username }}</li>
 									<li class="meta-date">{{ object.updated_at }}</li>

@@ -5,7 +5,6 @@ admin.site.register(Logo)
 
 admin.site.register(ContactUs)
 
-
 # class Service(admin.StackedInline):
 #     model = TeamServices
 #     extra = 5
@@ -79,20 +78,27 @@ admin.site.register(Service, ServiceAdmin)
 
 
 class SubServiceAdmin(admin.ModelAdmin):
-    ...
-    # fields = [
-    #     'title_az', 'title_en', 'title_ru',
-    #     'description_az', 'description_en', 'description_ru',
-    #     'image', 'fa_icon', 'service',
+    fields = [
+        'title_az', 'title_en',
+        'description_az', 'description_en',
+        'image', 'service',
 
-    # ]
+    ]
 
 
 admin.site.register(SubService, SubServiceAdmin)
 
 
 class TeamAdmin(admin.ModelAdmin):
-    pass
+    fields = [
+        'name_az', 'name_en',
+        'desc_az', 'desc_en',
+        'status_az', 'status_en',
+        'order', 'email', 'number',
+        'img', 'facebook', 'instagram',
+        'twitter'
+
+    ]
 
 
 admin.site.register(Team, TeamAdmin)

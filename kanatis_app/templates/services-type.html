@@ -25,6 +25,9 @@
 						<div class="practice-item-v2">
 							<a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">
 								<div class="post-image"><img src="{{ servicetype.image.url }}" class="img-fluid" alt=""></div>
+								{% comment %}
+									600px 400px
+								{% endcomment %}
 							</a>
 							<h5 class="practice-title-v2"><a href="{% url 'kanatis:service-detail' servicetype.service.slug servicetype.slug %}">{{ servicetype.title }}</a></h5>
 							<div class="practice-excerpt">

@@ -20,6 +20,9 @@
 								<article class="blog-item blog-item-2col-grid">
 									<a href="{% url 'kanatis:blog_detail' post.slug %}">
 										<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
+										{% comment %}
+										  1200px 600px
+										{% endcomment %}
 									</a>
 									<div class="post-holder">
 										<ul class="blog-date">
