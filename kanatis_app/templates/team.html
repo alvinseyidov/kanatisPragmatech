@@ -19,12 +19,14 @@
                             <div class="lawyer-holder lawyer-3col">
 
                                 <a href="{% url 'kanatis:detail_team' i.slug %}">
-                                    {% thumbnail i.img "600x550" crop="center" as img %}
-                                        <img src='{{ img.url }}' class="img-fluid">
-                                        {% comment %}
-                                        600px 550px
-                                    {% endcomment %}
-                                    {% endthumbnail %}</a>
+                                    <!-- {% comment %}
+                                        {% thumbnail i.img "600x550" crop="center" as img %}
+                                            <img src='{{ img.url }}' class="img-fluid">
+                                            600px 550px
+                                        {% endthumbnail %}
+                                    {% endcomment %} -->
+                                    <img src='{{ img.url }}' class="img-fluid">
+                                </a>
                                 <div class="lawyer-position">{{ i.status }}</div>
                                 <h2 class="lawyer-title"><a href="{{ i.slug }}">{{ i.name }}</a></h2>
                                 <div class="lawyer-excerpt">{{ i.desc|truncatechars:120|safe }}
