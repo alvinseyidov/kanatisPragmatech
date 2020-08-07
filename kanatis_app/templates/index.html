@@ -2,185 +2,221 @@
 {% load static %}
 {% block body %}
     {% load i18n %}
-		<!-- HOME SLIDER -->
-		<div class="slider-container">
-			<div class="owl-carousel owl-theme home-slider">
-				
-				{% for carousel in carousels %}
-				<div class="slider-post slider-item-box">
-					<img class="img-fluid" src="{{ carousel.image.url }}" alt="">
-					<div class="slider-caption">
-						<div class="slider-text">
-							<h2>{{ carousel.content }}</h2>
-							<a class="btn-white" href="{% url 'kanatis:services-type' carousel.service.slug %}">{% trans 'Ətraflı' %}</a>
-						</div>
-					</div>
-				</div>
-				{% endfor %}
+    {% load thumbnail %}
+
+    <!-- HOME SLIDER -->
+    <div class="slider-container">
+        <div class="owl-carousel owl-theme home-slider">
+
+            {% for carousel in carousels %}
+                <div class="slider-post slider-item-box">
+                    <img class="img-fluid" src="{{ carousel.image.url }}" alt="">
+                    <div class="slider-caption">
+                        <div class="slider-text">
+                            <h2>{{ carousel.content }}</h2>
+                            <a class="btn-white"
+                               href="{% url 'kanatis:services-type' carousel.service.slug %}">{% trans 'Ətraflı' %}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 
 
-			</div>
-		</div>
-		<!-- /HOME SLIDER -->
-		<!-- PAGE CONTENT -->
-		<div class="page-holder custom-page-template page-full fullscreen-page home-page-content clearfix">
-		<!-- SECTION 1-->
-		<section class="section-holder">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 offset-lg-2">
-						<div class="intro-msg margin-b108">
-							<h2 class="section-heading-title">{{ about.title }}</h2>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-				<div class="row">
-					<div class="col-lg-12 margin-bm32">
-						<p>{{ about.description|truncatechars:580|safe }}
-						</p>
-					</div>
-				</div>
-				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:about' %}">Ətraflı</a></div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</section>
-		<!-- /SECTION 1-->
-		<!-- SECTION 3-->
-		<section class="section-holder">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 offset-lg-2 alignc">
-						<h2 class="section-heading-title">{% trans 'Xidmətlər' %}</h2>
-					</div>
-				</div>
-	   
-				<div class="row practice-items-holder-v2">
-					{% for service in services %}
-						<div class="col-lg-3 col-md-6">
-							<div class="practice-item-v2">
-								<a href="{% url 'kanatis:services-type' service.slug %}">
-									<div class="post-image"><img src="{{ service.image.url }}" class="img-fluid" alt=""></div>
-									{% comment %}
+        </div>
+    </div>
+    <!-- /HOME SLIDER -->
+    <!-- PAGE CONTENT -->
+    <div class="page-holder custom-page-template page-full fullscreen-page home-page-content clearfix">
+        <!-- SECTION 1-->
+        <section class="section-holder">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="intro-msg margin-b108">
+                            <h2 class="section-heading-title">{{ about.title }}</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-lg-12 margin-bm32">
+                        <p>{{ about.description|truncatechars:580|safe }}
+                        </p>
+                    </div>
+                </div>
+                <div class="view-more alignc margin-t72"><a href="{% url 'kanatis:about' %}">Ətraflı</a></div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </section>
+        <!-- /SECTION 1-->
+        <!-- SECTION 3-->
+        <section class="section-holder">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 alignc">
+                        <h2 class="section-heading-title">{% trans 'Xidmətlər' %}</h2>
+                    </div>
+                </div>
+
+                <div class="row practice-items-holder-v2">
+                    {% for service in services %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="practice-item-v2">
+                                {% thumbnail service.image "600x400" crop="center" as img %}
+                                    <a href="{% url 'kanatis:services-type' service.slug %}">
+                                        <div class="post-image"><img src="{{ img.url }}"
+                                                                     class="img-fluid"
+                                                                     alt=""></div>
+                                    </a>
+                                {% endthumbnail %}
+                                {#                                <a href="{% url 'kanatis:services-type' service.slug %}">#}
+                                {#                                    <div class="post-image"><img src="{{ service.image.url }}" class="img-fluid" alt="">#}
+                                {#                                    </div>#}
+                                {% comment %}
 										600px 400px
 									{% endcomment %}
-								</a>
-								<h5 class="practice-title-v2"><a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a></h5>
-								<div class="practice-excerpt">
-									{{ service.description }}
-								</div>
-								<a class="read-more" href="{% url 'kanatis:services-type' service.slug %}">{% trans 'Ətraflı' %}</a>
-							</div>
-						</div>
-					{% endfor %}
-				</div>
-			<!-- /row -->
-				<!-- /row -->
-				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:services' %}">{% trans 'Ətraflı' %}</a></div>
-			</div>
-			<!-- /container -->	
-		</section>
+
+                                <h5 class="practice-title-v2"><a
+                                        href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a>
+                                </h5>
+                                <div class="practice-excerpt">
+                                    {{ service.description }}
+                                </div>
+                                <a class="read-more"
+                                   href="{% url 'kanatis:services-type' service.slug %}">{% trans 'Ətraflı' %}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- /row -->
+                <!-- /row -->
+                <div class="view-more alignc margin-t72"><a
+                        href="{% url 'kanatis:services' %}">{% trans 'Ətraflı' %}</a></div>
+            </div>
+            <!-- /container -->
+        </section>
 
 
-		<!-- SECTION 7-->
-		<section class="section-holder">
-			<div class="news_title">
-				<h2>{% trans 'Xəbərlər' %}</h2>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 posts-holder post-sidebar ">
-						<div class="row">
-							{% for post in posts %}
-								<div class="col-md-6 col-lg-4">
-									<article class=" blog-item-2col-grid">
-										<a href="{% url 'kanatis:blog_detail' post.slug %}">
-											<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
-											{% comment %}
+        <!-- SECTION 7-->
+        <section class="section-holder">
+            <div class="news_title">
+                <h2>{% trans 'Xəbərlər' %}</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 posts-holder post-sidebar ">
+                        <div class="row">
+                            {% for post in posts %}
+                                <div class="col-md-6 col-lg-4">
+                                    <article class=" blog-item-2col-grid">
+                                        {% thumbnail post.image "1200x600" crop="center" as img %}
+                                            <a href="{% url 'kanatis:blog_detail' post.slug %}">
+                                                <div class="post-image"><img src="{{ img.url }}"
+                                                                             class="img-fluid"
+                                                                             alt=""></div>
+                                            </a>
+                                        {% endthumbnail %}
+{#                                        <a href="{% url 'kanatis:blog_detail' post.slug %}">#}
+{#                                            <div class="post-image"><img src="{{ post.image.url }}" class="img-fluid"#}
+{#                                                                         alt=""></div>#}
+                                            {% comment %}
 												1200px 600px
 											{% endcomment %}
-										</a>
-										<div class="post-holder">
-											<ul class="blog-date">
-												<li class="meta-date">{{ post.updated_at }}</li>
-											</ul>
-											<h2 class="blog-title"><a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title }}</a></h2>
-											<div class="article-excerpt">{{ post.content|truncatechars:200|safe }}</div>
-										</div>
-									</article>
-								</div>
-							{% endfor %}
+                                        </a>
+                                        <div class="post-holder">
+                                            <ul class="blog-date">
+                                                <li class="meta-date">{{ post.updated_at }}</li>
+                                            </ul>
+                                            <h2 class="blog-title"><a
+                                                    href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title }}</a>
+                                            </h2>
+                                            <div class="article-excerpt">{{ post.content|truncatechars:200|safe }}</div>
+                                        </div>
+                                    </article>
+                                </div>
+                            {% endfor %}
 
-						</div>
-						<!-- /row -->
-					</div>
-					<!-- /col-lg-12 -->
-				</div>
-				<div class="view-more alignc margin-t72"><a href="{% url 'kanatis:blog' %}">{% trans 'Ətraflı' %}</a></div>
-				<!-- /row -->
-			</div>
-		</section>
-		<!-- /SECTION 7-->	
-		<!-- SECTION 9-->
-		<section class="section-holder">
-			<div class="contact_title">
-				<h2>{% trans 'Əlaqə' %}</h2>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 margin-bm54">
-						<span class="heading-subtitle">{% trans 'Əlaqə' %}</span>
-						<div class="icon-box-wrapper">
-							<div class="icon-box-icon"><i class="fas fa-map-marker-alt"></i></div>
-							<div class="icon-box-content">
-								<div class="icon-box-title">{% trans 'OFFICE'|upper %}</div>
-								<p class="icon-box-description">{{ contact.address }}</p>
-							</div>
-						</div>
-						<!-- /icon-box-wrapper -->
-						<div class="icon-box-wrapper">
-							<div class="icon-box-icon"><i class="fas fa-phone-alt"></i></div>
-							<div class="icon-box-content">
-								<div class="icon-box-title">{% trans 'PHONE'|upper %}</div>
-								<p class="icon-box-description">{{ contact.number }}<br/>{{ contact.office_phone }}</p>
-							</div>
-						</div>
-						<!-- /icon-box-wrapper -->
-						<div class="icon-box-wrapper">
-							<div class="icon-box-icon"><i class="far fa-envelope"></i></div>
-							<div class="icon-box-content">
-								<div class="icon-box-title">{% trans 'EMAIL'|upper %}</div>
-								<p class="icon-box-description">{{ contact.email }}</p>
-							</div>
-						</div>
-						<!-- /icon-box-wrapper -->
-						<div class="gmaps margin-t54">
-							{{ contact.gmap_embed_address|safe }}
-						</div>
-					</div>
-					<div class="col-lg-6">
-						<div id="contact-form-holder">
-							<form method="post" id="contact-form" action='include/contact-process.php'>
-								<div class="margin-b32"><label>{% trans 'Name'|upper %}</label><input type="text" name="name" class="comm-field"/></div>
-								<div class="margin-b32"><label>{% trans 'EMAIL'|upper %}</label><input type="text" name="email" class="comm-field"/> </div>
-								<div class="margin-b32"><label>{% trans 'Subject'|upper %}</label><input type="text" name="subject" class="comm-field" /> </div>
-								<div class="margin-b32"><label>{% trans 'Message'|upper %}</label><textarea name="message" id="msg-contact" rows="5" ></textarea></div>
-								<p class="antispam">Leave this empty: <input type="text" name="url" /></p>
-								<p><input type="submit" value="{% trans 'Send message'|upper %}" id="submit"/></p>
-							</form>
-						</div>
-						<!-- contact-form-holder-->
-						<div id="output-contact"></div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->	
-		</section>
-		<!-- /SECTION 9-->	
-		
-		</div>
-		<!-- /PAGE CONTENT -->
+                        </div>
+                        <!-- /row -->
+                    </div>
+                    <!-- /col-lg-12 -->
+                </div>
+                <div class="view-more alignc margin-t72"><a href="{% url 'kanatis:blog' %}">{% trans 'Ətraflı' %}</a>
+                </div>
+                <!-- /row -->
+            </div>
+        </section>
+        <!-- /SECTION 7-->
+        <!-- SECTION 9-->
+        <section class="section-holder">
+            <div class="contact_title">
+                <h2>{% trans 'Əlaqə' %}</h2>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 margin-bm54">
+                        <span class="heading-subtitle">{% trans 'Əlaqə' %}</span>
+                        <div class="icon-box-wrapper">
+                            <div class="icon-box-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="icon-box-content">
+                                <div class="icon-box-title">{% trans 'OFFICE'|upper %}</div>
+                                <p class="icon-box-description">{{ contact.address }}</p>
+                            </div>
+                        </div>
+                        <!-- /icon-box-wrapper -->
+                        <div class="icon-box-wrapper">
+                            <div class="icon-box-icon"><i class="fas fa-phone-alt"></i></div>
+                            <div class="icon-box-content">
+                                <div class="icon-box-title">{% trans 'PHONE'|upper %}</div>
+                                <p class="icon-box-description">{{ contact.number }}<br/>{{ contact.office_phone }}</p>
+                            </div>
+                        </div>
+                        <!-- /icon-box-wrapper -->
+                        <div class="icon-box-wrapper">
+                            <div class="icon-box-icon"><i class="far fa-envelope"></i></div>
+                            <div class="icon-box-content">
+                                <div class="icon-box-title">{% trans 'EMAIL'|upper %}</div>
+                                <p class="icon-box-description">{{ contact.email }}</p>
+                            </div>
+                        </div>
+                        <!-- /icon-box-wrapper -->
+                        <div class="gmaps margin-t54">
+                            {{ contact.gmap_embed_address|safe }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="contact-form-holder">
+                            <form method="post" id="contact-form" action='include/contact-process.php'>
+                                <div class="margin-b32"><label>{% trans 'Name'|upper %}</label><input type="text"
+                                                                                                      name="name"
+                                                                                                      class="comm-field"/>
+                                </div>
+                                <div class="margin-b32"><label>{% trans 'EMAIL'|upper %}</label><input type="text"
+                                                                                                       name="email"
+                                                                                                       class="comm-field"/>
+                                </div>
+                                <div class="margin-b32"><label>{% trans 'Subject'|upper %}</label><input type="text"
+                                                                                                         name="subject"
+                                                                                                         class="comm-field"/>
+                                </div>
+                                <div class="margin-b32"><label>{% trans 'Message'|upper %}</label><textarea
+                                        name="message" id="msg-contact" rows="5"></textarea></div>
+                                <p class="antispam">Leave this empty: <input type="text" name="url"/></p>
+                                <p><input type="submit" value="{% trans 'Send message'|upper %}" id="submit"/></p>
+                            </form>
+                        </div>
+                        <!-- contact-form-holder-->
+                        <div id="output-contact"></div>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </section>
+        <!-- /SECTION 9-->
+
+    </div>
+    <!-- /PAGE CONTENT -->
 
 {% endblock body %}

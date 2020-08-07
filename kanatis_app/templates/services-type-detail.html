@@ -1,48 +1,51 @@
-
 {% extends "base.html" %}
 {% load static %}
 {% block body %}
     {% load i18n %}
+    {% load thumbnail %}
 
-<div class="service_title">
-	<h2>{{ subservice.title }}</h2>
-</div>	
-<!-- PAGE CONTENT -->
-<div class="page-holder custom-page-template page-full fullscreen-page clearfix">
-<!-- SECTION 1-->
-<section class="section-holder">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-9">
-				<img src="{{ subservice.image.url }}" class="img-fluid margin-b16" alt="" />
-				{{ subservice.content|safe }}
-			</div>
-			<!-- /col-lg-9 -->
-			<div class="col-lg-3">
-				<aside>
-					<ul>
-						<li class="widget">
-							<h5 class="widgettitle">{% trans 'Xidmətlər' %}</h5>
-							<div class="sidebar widget_recent_entries">
-								<ul>
-									{% for subservice in subservices %}
-										<li><a href="{% url 'kanatis:service-detail' subservice.service.slug subservice.slug %}">{{ subservice.title }}</a></li>
-									{% endfor %}
-									
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</aside>
-			</div>
-			<!-- /col-lg-3 -->
-		</div>
-		<!-- /row -->
-	</div>
-	<!-- /container -->	
-</section>
-<!-- /SECTION 1-->
-</div><!-- /PAGE CONTENT -->
+
+    <div class="service_title">
+        <h2>{{ subservice.title }}</h2>
+    </div>
+    <!-- PAGE CONTENT -->
+    <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
+        <!-- SECTION 1-->
+        <section class="section-holder">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <img src="{{ subservice.image.url }}" class="img-fluid margin-b16" alt=""/>
+                        {{ subservice.content|safe }}
+                    </div>
+                    <!-- /col-lg-9 -->
+                    <div class="col-lg-3">
+                        <aside>
+                            <ul>
+                                <li class="widget">
+                                    <h5 class="widgettitle">{% trans 'Xidmətlər' %}</h5>
+                                    <div class="sidebar widget_recent_entries">
+                                        <ul>
+                                            {% for subservice in subservices %}
+                                                <li>
+                                                    <a href="{% url 'kanatis:service-detail' subservice.service.slug subservice.slug %}">{{ subservice.title }}</a>
+                                                </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <!-- /col-lg-3 -->
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </section>
+        <!-- /SECTION 1-->
+    </div><!-- /PAGE CONTENT -->
 
 {% endblock body %}
 	

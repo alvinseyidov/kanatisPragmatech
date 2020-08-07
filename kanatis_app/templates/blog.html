@@ -1,86 +1,103 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-{% load i18n %}
+    {% load i18n %}
+    {% load thumbnail %}
 
-		<!-- PAGE CONTENT -->
-<div class="page-holder custom-page-template page-full fullscreen-page clearfix">
+    <!-- PAGE CONTENT -->
+    <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
 
-	<div class="blog_title">
-		<h2>{% trans 'Blog' %}</h2>
-	</div>
-	<!-- SECTION 1-->
-	<section class="blog-1col-list-left">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-9 posts-holder post-sidebar ">
-					<div class="row layout-masonry">
-						{% for post in page_obj %}
-							<div class="col-md-6 blog-item-masonry">
-								<article class="blog-item blog-item-2col-grid">
-									<a href="{% url 'kanatis:blog_detail' post.slug %}">
-										<div class="post-image"> <img src="{{ post.image.url }}" class="img-fluid" alt=""></div>
-										{% comment %}
+        <div class="blog_title">
+            <h2>{% trans 'Blog' %}</h2>
+        </div>
+        <!-- SECTION 1-->
+        <section class="blog-1col-list-left">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 posts-holder post-sidebar ">
+                        <div class="row layout-masonry">
+                            {% for post in page_obj %}
+                                <div class="col-md-6 blog-item-masonry">
+                                    <article class="blog-item blog-item-2col-grid">
+                                        {% thumbnail post.image "1200x600" crop="center" as img %}
+                                            <a href="{% url 'kanatis:blog_detail' post.slug %}">
+                                                <div class="post-image"><img src="{{ img.url }}"
+                                                                             class="img-fluid"
+                                                                             alt=""></div>
+                                            </a>
+                                        {% endthumbnail %}
+{#                                                                                <a href="{% url 'kanatis:blog_detail' post.slug %}">#}
+{#                                                                                    <div class="post-image"><img src="{{ post.image.url }}" class="img-fluid"#}
+                                        {#                                                                         alt=""></div>#}
+                                        {% comment %}
 										  1200px 600px
 										{% endcomment %}
-									</a>
-									<div class="post-holder">
-										<ul class="blog-date">
-											<li class="meta-date">{{ post.updated_at }}</li>
-										</ul>
-										<h2 class="blog-title"><a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title|truncatechars:100 }}</a></h2>
-										<div class="article-excerpt">{{ post.content|truncatechars:320|safe }}</div>
-									</div>
-								</article>
-							</div>
-						{% endfor %}
+                                        </a>
+                                        <div class="post-holder">
+                                            <ul class="blog-date">
+                                                <li class="meta-date">{{ post.updated_at }}</li>
+                                            </ul>
+                                            <h2 class="blog-title"><a
+                                                    href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title|truncatechars:100 }}</a>
+                                            </h2>
+                                            <div class="article-excerpt">{{ post.content|truncatechars:320|safe }}</div>
+                                        </div>
+                                    </article>
+                                </div>
+                            {% endfor %}
 
-					</div>
+                        </div>
 
-                    {% if is_paginated %}
-                        <div class="prev-next">
+                        {% if is_paginated %}
+                            <div class="prev-next">
                                 {% if page_obj.has_previous %}
-									<span class="nav-page"><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></span>
+                                    <span class="nav-page"><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></span>
                                 {% endif %}
                                 {% for p in paginator.page_range %}
                                     {% if page_obj.number == p %}
-										<span class="page-numbers current-page">{{ p }}</span>
+                                        <span class="page-numbers current-page">{{ p }}</span>
                                     {% else %}
-										<a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
+                                        <a class="page-numbers" href="?page={{ p }}">{{ p }}</a>
                                     {% endif %}
                                 {% endfor %}
                                 {% if page_obj.has_next %}
-										<span class="nav-page"><a href="?page={{ page_obj.next_page_number }}">&gt;</a></span>
+                                    <span class="nav-page"><a
+                                            href="?page={{ page_obj.next_page_number }}">&gt;</a></span>
                                 {% endif %}
-                        </div>
-                    {% endif %}
+                            </div>
+                        {% endif %}
 
-				</div>
-				<!-- /col-lg-9 -->
-				<div class="col-lg-3">
-					<aside>
-						<ul>
-							<li class="widget">
-								<form method="get" id="search-form" action="#"> <span><input type="text" name="s" id="search-string" placeholder="type and hit enter"></span></form>
-							</li>
-							<li class="widget widget_recent_entries">
-								<h5 class="widgettitle">{% trans 'Recent Posts' %}</h5>
-								<ul>
-									{% for post in recentposts %}
-										<li><a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title|truncatechars:50 }}</a></li>
-									{% endfor %}
-								</ul>
-							</li>
-						</ul>
-					</aside>
-				</div>
-			</div>
-			<!-- /row -->
-		</div>
-		<!-- /container -->	
-	</section>
-	<!-- /SECTION 1-->
-	</div><!-- /PAGE CONTENT -->
-	
+                    </div>
+                    <!-- /col-lg-9 -->
+                    <div class="col-lg-3">
+                        <aside>
+                            <ul>
+                                <li class="widget">
+                                    <form method="get" id="search-form" action="#"><span><input type="text" name="s"
+                                                                                                id="search-string"
+                                                                                                placeholder="type and hit enter"></span>
+                                    </form>
+                                </li>
+                                <li class="widget widget_recent_entries">
+                                    <h5 class="widgettitle">{% trans 'Recent Posts' %}</h5>
+                                    <ul>
+                                        {% for post in recentposts %}
+                                            <li>
+                                                <a href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title|truncatechars:50 }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </section>
+        <!-- /SECTION 1-->
+    </div><!-- /PAGE CONTENT -->
+
 {% endblock body %}
 	

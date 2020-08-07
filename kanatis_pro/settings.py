@@ -38,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'kanatis_app.apps.KanatisAppConfig',
     'ckeditor',
-    'sorl.thumbnail',
     'widget_tweaks',
     'rosetta',
-    'modeltranslation'
+    'modeltranslation',
+    'easy_thumbnails',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

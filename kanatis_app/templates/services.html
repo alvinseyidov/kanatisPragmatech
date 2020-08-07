@@ -2,41 +2,54 @@
 {% load static %}
 {% block body %}
     {% load i18n %}
-	<!-- TOP IMAGE -->
-	<div class="service_title">
-		<h2>{% trans 'Xidmətlər' %}</h2>
-	</div>
-	<!-- /TOP IMAGE -->
-	<!-- PAGE CONTENT -->
-		<div class="page-holder custom-page-template page-full fullscreen-page clearfix">
-			<!-- SECTION 1-->
-			<section class="section-holder">
-				<div class="container">
-					<div class="row practice-items-holder-v2">
-						{% for service in services %}
-							<div class="col-lg-3 col-md-6">
-								<div class="practice-item-v2">
-									<a href="{% url 'kanatis:services-type' service.slug %}">
-										<div class="post-image"><img src="{{ service.image.url }}" class="img-fluid" alt=""></div>
-										{% comment %}
+    {% load thumbnail %}
+
+    <!-- TOP IMAGE -->
+    <div class="service_title">
+        <h2>{% trans 'Xidmətlər' %}</h2>
+    </div>
+    <!-- /TOP IMAGE -->
+    <!-- PAGE CONTENT -->
+    <div class="page-holder custom-page-template page-full fullscreen-page clearfix">
+        <!-- SECTION 1-->
+        <section class="section-holder">
+            <div class="container">
+                <div class="row practice-items-holder-v2">
+                    {% for service in services %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="practice-item-v2">
+                                {% thumbnail service.image "600x400" crop="center" as img %}
+                                    <a href="{% url 'kanatis:services-type' service.slug %}">
+                                        <div class="post-image"><img src="{{ img.url }}"
+                                                                     class="img-fluid"
+                                                                     alt=""></div>
+                                    </a>
+                                {% endthumbnail %}
+{#                                <a href="{% url 'kanatis:services-type' service.slug %}">#}
+{#                                    <div class="post-image"><img src="{{ service.image.url }}" class="img-fluid" alt="">#}
+{#                                    </div>#}
+                                    {% comment %}
 											600px 400px
 										{% endcomment %}
-									</a>
-									<h5 class="practice-title-v2"><a href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a></h5>
-									<div class="practice-excerpt">
-										{{ service.description }}
-									</div>
-									<a class="read-more" href="{% url 'kanatis:services-type' service.slug %}">{% trans 'Ətraflı' %}</a>
-								</div>
-							</div>
-						{% endfor %}
-					</div>
-				<!-- /row -->	
-				</div>
-				<!-- /container -->	
-			</section>
-			<!-- /SECTION 1-->
-		</div>
-	<!-- /PAGE CONTENT -->
+
+                                <h5 class="practice-title-v2"><a
+                                        href="{% url 'kanatis:services-type' service.slug %}">{{ service.name }}</a>
+                                </h5>
+                                <div class="practice-excerpt">
+                                    {{ service.description }}
+                                </div>
+                                <a class="read-more"
+                                   href="{% url 'kanatis:services-type' service.slug %}">{% trans 'Ətraflı' %}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </section>
+        <!-- /SECTION 1-->
+    </div>
+    <!-- /PAGE CONTENT -->
 {% endblock body %}
 	
