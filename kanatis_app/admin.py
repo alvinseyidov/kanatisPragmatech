@@ -139,7 +139,7 @@ class ContactAdmin(admin.ModelAdmin):
     fields = [
         'address_az', 'address_en',
         'text_az', 'text_en',
-        'gmap_embed_address', 'office_hour', 'number','social_networks'
+        'gmap_embed_address', 'office_hour', 'number', 'office_phone', 'social_networks'
 
     ]
 
