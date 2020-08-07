@@ -10,7 +10,12 @@
 
             {% for carousel in carousels %}
                 <div class="slider-post slider-item-box">
-                    <img class="img-fluid" src="{{ carousel.image.url }}" alt="">
+                    {% thumbnail carousel.image "1200x600" crop="center" as img %}
+
+                        <img src="{{ img.url }}" class="img-fluid" alt="">
+
+                    {% endthumbnail %}
+{#                    <img class="img-fluid" src="{{ carousel.image.url }}" alt="">#}
                     <div class="slider-caption">
                         <div class="slider-text">
                             <h2>{{ carousel.content }}</h2>
@@ -117,10 +122,10 @@
                                                                              alt=""></div>
                                             </a>
                                         {% endthumbnail %}
-{#                                        <a href="{% url 'kanatis:blog_detail' post.slug %}">#}
-{#                                            <div class="post-image"><img src="{{ post.image.url }}" class="img-fluid"#}
-{#                                                                         alt=""></div>#}
-                                            {% comment %}
+                                        {#                                        <a href="{% url 'kanatis:blog_detail' post.slug %}">#}
+                                        {#                                            <div class="post-image"><img src="{{ post.image.url }}" class="img-fluid"#}
+                                        {#                                                                         alt=""></div>#}
+                                        {% comment %}
 												1200px 600px
 											{% endcomment %}
                                         </a>
