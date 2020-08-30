@@ -30,14 +30,22 @@ def set_language(request, lang_code):
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["carousels"] = Carousel.objects.all()[:15]
-        context["services"] = Service.objects.order_by('-id')[:4]
+        context["services"] = Service.objects.order_by('order')[:4]
         context["posts"] = Post.objects.order_by('-id')[:3]
         context['contact'] = Contact.objects.order_by('-id').last()
+        context['form'] = ContactForm()
         return context
+    
+    def post(self, request):
+        print('-----', self.request)
+        if request.method == 'POST':
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('kanatis:index')
 
 
 class BlogPageView(ListView):
@@ -68,7 +76,7 @@ class ServicePageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["services"] = Service.objects.all()[:100]
+        context["services"] = Service.objects.order_by('order')[:100]
         context['contact'] = Contact.objects.order_by('-id').last()
         return context
 
@@ -81,7 +89,7 @@ class SubServicePageView(TemplateView):
         context = super(SubServicePageView, self).get_context_data(**kwargs)
         service = kwargs.get('service')
         if service:
-            context['servicetypes'] = SubService.objects.order_by('-id').filter(service__slug=service)
+            context['servicetypes'] = SubService.objects.order_by('order').filter(service__slug=service)
         context['contact'] = Contact.objects.order_by('-id').last()
         return context
 
@@ -95,9 +103,9 @@ class SubServiceDetailView(TemplateView):
         subservice = kwargs.get('subservice')
         service = kwargs.get('service')
         if subservice:
-            context['subservice'] = SubService.objects.order_by('-id').filter(slug=subservice).first()
+            context['subservice'] = SubService.objects.order_by('order').filter(slug=subservice).first()
         if service:
-            context['subservices'] = SubService.objects.order_by('-id').filter(service__slug=service)
+            context['subservices'] = SubService.objects.order_by('order').filter(service__slug=service)
         context['contact'] = Contact.objects.order_by('-id').last()
         return context
 
@@ -110,7 +118,6 @@ class SubAboutDetailView(TemplateView):
         context['subabout'] = SubAboutUs.objects.filter(slug = context['slug']).first()
         context['contact'] = Contact.objects.order_by('-id').last()
         return context
-    
 
 
 def aboutus(request):
@@ -128,14 +135,13 @@ def detail_team(request, slug):
     context = common()
     team = Team.objects.filter(slug=slug).order_by('-id').last()
     context['team'] = team
-    context['services'] = TeamServices.objects.filter(service=team).order_by('-id').all()
-    context['sertificate'] = SertificateTeam.objects.filter(sertificate=team).order_by('-id').all()
+    context['services'] = TeamServices.objects.filter(service=team).order_by('id')
+    context['sertificate'] = SertificateTeam.objects.filter(sertificate=team).order_by('-id')
     return render(request, 'team-single-page.html', context)
 
 
 def contactus(request):
     context = common()
-
     form = ContactForm()
     context['form'] = form
     if request.method == 'POST':

@@ -47,11 +47,11 @@
 
 
                 </ul>
-            <li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
-                <a href="{% url 'kanatis:blog' %}">{% trans 'Blog' %}</a>
-            </li>
             <li class="menu-item {% if request.path == team_path %}  current-menu-item {% endif %}">
                 <a href="{% url 'kanatis:teams' %}">{% trans 'Team' %}</a>
+            </li>
+            <li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
+                <a href="{% url 'kanatis:blog' %}">{% trans 'Blog' %}</a>
             </li>
 
             <li class="menu-item {% if request.path == contact_path %}  current-menu-item {% endif %}">
@@ -84,7 +84,7 @@
                 <div class="header-info"><span class="info-circle"><i
                         class="fa fa-phone"></i></span> {{ contact.number }} | {{ contact.office_phone }}</div>
                 <div class="header-info"><span class="info-circle"><i
-                        class="fa fa-envelope"></i></span><a href="mailto:"></a> {{ contact.email }}</div>
+                        class="fa fa-envelope"></i></span><a href="mailto:">{{ contact.email }}</a> </div>
 
             </div>
             <ul class="social-media">
@@ -97,7 +97,7 @@
 
         <div class="header-wrap">
             <div class="logo logo-2"><a href="{% url 'kanatis:index' %}"><img class="img-fluid"
-                                                                            src="{% static 'assets/images/kts-01.svg' %}"
+                                                                            src="{{ logo.image.url }}"
                                                                             alt="Lawyers"></a></div>
             <div class="nav-holder nav-holder-2">
                 <ul class="menu-nav  menu-nav-2">
@@ -134,11 +134,11 @@
 
                         </ul>
                     </li>
-                    <li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
-                        <a href="{% url 'kanatis:blog' %}">{% trans 'Blog' %}</a>
-                    </li>
                     <li class="menu-item {% if request.path == team_path %}  current-menu-item {% endif %}">
                         <a href="{% url 'kanatis:teams' %}">{% trans 'Team' %}</a>
+                    </li>
+                    <li class="menu-item {% if request.path == posts_path %}  current-menu-item {% endif %}">
+                        <a href="{% url 'kanatis:blog' %}">{% trans 'Blog' %}</a>
                     </li>
 
                     <li class="menu-item {% if request.path == contact_path %}  current-menu-item {% endif %}">
@@ -230,8 +230,8 @@
 </header>
 <!-- /HEADER -->
 
-
-<!-- <div class="lang_select_box">
+<!-- 
+<div class="lang_select_box">
     <ul class="menu-nav menu-nav-2">
         <li class="menu-item menu-item-has-children">
             <a href="#">{{ LANGUAGE_CODE }}</a>
@@ -300,9 +300,9 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-            {% endfor %}
+            {% endfor %} -->
 
     </ul>
 </li>
 </ul>
-  </div> -->
+  </div>

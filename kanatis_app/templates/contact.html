@@ -28,13 +28,13 @@
                             <form method="post">
                                 {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-lg-4 margin-b32">{% render_field form.name class="form-control" %}</div>
-                                    <div class="col-lg-4 margin-b32">{% render_field form.email class="form-control" %}</div>
-                                    <div class="col-lg-4 margin-b32">{% render_field form.subject class="form-control" %}
+                                    <div class="col-lg-4 margin-b32">{% render_field form.name class="comm-field" %}</div>
+                                    <div class="col-lg-4 margin-b32">{% render_field form.email class="comm-field" %}</div>
+                                    <div class="col-lg-4 margin-b32">{% render_field form.subject class="comm-field" %}
                                     </div>
                                 </div>
-                                <div class="margin-b32">{% render_field form.desc class="form-control" %}</div>
-                                <button type="submit" class="btn btn-danger"> {% trans 'Send message' %}</button>
+                                <div class="margin-b32">{% render_field form.desc class="comm-field" %}</div>
+                                <p><input type="submit" value="{% trans 'Send message'|upper %}" id="submit"/></p>
                             </form>
                         </div>
                         <!-- contact-form-holder-->
@@ -50,9 +50,9 @@
         <!-- SECTION 2-->
         <section>
             <div class="container">
-                <div class="gmaps">
-                    <div class="mapouter">
-                        <div class="gmap_canvas">
+                <div class="">
+                    <div class="">
+                        <div class="">
                             {{ contact.gmap_embed_address|safe }}
                         <style>
                             .mapouter {

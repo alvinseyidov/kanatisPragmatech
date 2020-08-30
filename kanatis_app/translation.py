@@ -3,7 +3,7 @@ from .models import *
 
 
 class PostTranslationOptions(TranslationOptions):
-    fields = ('title', 'content')
+    fields = ('title', 'short_content', 'content')
 
 
 translator.register(Post, PostTranslationOptions)
@@ -50,7 +50,7 @@ translator.register(SubAboutUs, SubAboutUsTranslationOptions)
 
 
 class TeamTranslationOptions(TranslationOptions):
-    fields = ('name', 'desc', 'status')
+    fields = ('name', 'short_desc', 'desc', 'status')
 
 
 translator.register(Team, TeamTranslationOptions)

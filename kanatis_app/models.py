@@ -21,9 +21,22 @@ def latin_slugify(str):
     str = str.replace("Ü", "u")
     return str.lower()
 
+ORDER = (
+    (1, _("First position")),
+    (2, _("Second position")),
+    (3, _("Third position")),
+    (4, _("Fourth position")),
+    (5, _("fifth position")),
+    (6, _("sixth position")),
+    (7, _("seventh position")),
+    (8, _("eight position")),
+    (9, _("ninenth position")),
+    (10, _("tenth position"))
+)
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
+    short_content = models.TextField(max_length=300)
     content = RichTextField()
     image = models.ImageField(upload_to='postimages/')
     category = models.ForeignKey('Service', related_name='posts', on_delete=models.CASCADE)
@@ -58,19 +71,22 @@ class Carousel(models.Model):
 class Service(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
+    order = models.PositiveIntegerField(_('Service order'), default=1)
     image = models.ImageField(upload_to='services/')
     slug = models.SlugField(unique=True, null=True, editable=False)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{ self.name }'
 
     def save(self, *args, **kwargs):
         self.slug = latin_slugify(self.name[:48])
         super(Service, self).save(*args, **kwargs)
-
+    class Meta:
+        ordering = ['order']
 
 class SubService(models.Model):
     title = models.CharField(max_length=30)
+    order = models.PositiveIntegerField(_('Subservice order'), default=1)
     image = models.ImageField(upload_to='subservices/')
     content = RichTextField()
     service = models.ForeignKey('Service', related_name='subservice', on_delete=models.CASCADE)
@@ -80,11 +96,15 @@ class SubService(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{ self.title }'
 
     def save(self, *args, **kwargs):
         self.slug = latin_slugify(self.title[:48])
         super(SubService, self).save(*args, **kwargs)
+
+    class Meta:
+        ordering = ['order']
+
 
 class SocialNetwork(models.Model):
     name = models.CharField(max_length=255)
@@ -122,6 +142,7 @@ class SubAboutUs(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
     img = models.ImageField(upload_to='subabout/')
     description = RichTextField()
+    order = models.PositiveIntegerField(_('Position ordering'), choices=ORDER, default=1)
     about = models.ForeignKey('AboutUs', related_name='subabouts', on_delete=models.CASCADE)
     slug = models.SlugField(unique=True, null=True, editable=False)
     
@@ -137,29 +158,20 @@ class SubAboutUs(models.Model):
 
     class Meta:
         verbose_name_plural = "Sub about"
+        ordering = ['order']
 
-ORDER = (
-    (1, _("First position")),
-    (2, _("Second position")),
-    (3, _("Third position")),
-    (4, _("Fourth position")),
-    (5, _("fifth position")),
-    (6, _("sixth position")),
-    (7, _("seventh position")),
-    (8, _("eight position")),
-    (9, _("ninenth position")),
-    (10, _("tenth position"))
-)
+
 
 
 class Team(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     order = models.PositiveIntegerField(_('Position ordering'), choices=ORDER, default=2)
-    desc = RichTextField()
-    status = models.CharField(max_length=255, null=True, blank=True)
+    short_desc = models.TextField('Short description')
+    desc = RichTextField('Description')
+    status = models.CharField('Position', max_length=255, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
-    number = models.CharField(max_length=255, null=True, blank=True)
-    img = models.ImageField(upload_to='teams')
+    number = models.CharField('Phone number', max_length=255, null=True, blank=True)
+    img = models.ImageField('profile image', upload_to='teams')
     facebook = models.CharField(max_length=255, null=True, blank=True)
     instagram = models.CharField(max_length=255, null=True, blank=True)
     twitter = models.CharField(max_length=255, null=True, blank=True)
@@ -179,16 +191,14 @@ class Team(models.Model):
 
 class TeamServices(models.Model):
     service = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True)
-    serv_name = models.CharField(max_length=255, null=True, blank=True)
+    serv_name = models.CharField(max_length=255)
 
     def __str__(self):
-        return f'{self.service}'
+        return f'{self.serv_name}'
 
     class Meta:
         verbose_name_plural = "Komanda Servisləri"
 
-    def __str__(self):
-        return self.service.name
 
 
 class SertificateTeam(models.Model):
@@ -196,7 +206,8 @@ class SertificateTeam(models.Model):
     sertificate_name = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = "Komanda Sertifikati"
+        verbose_name_plural = "Komanda Sertifikatları"
+        verbose_name = "Komanda Sertifikatı"
 
     def __str__(self):
         return self.sertificate_name
@@ -204,11 +215,11 @@ class SertificateTeam(models.Model):
 
 class Contact(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
-    gmap_embed_address = models.CharField('Gmap embeded iframe', max_length=1000)
+    gmap_embed_address = models.TextField('Gmap embeded iframe', max_length=1000)
     social_networks = models.ManyToManyField('SocialNetwork',)
     email = models.EmailField()
     office_hour = models.CharField(max_length=255, null=True, blank=True)
-    number = models.CharField(max_length=20, null=True, blank=True)
+    number = models.CharField('Phone', max_length=20, null=True, blank=True)
     office_phone = models.CharField(max_length=20, null=True, blank=True)
     text = RichTextField()
     
@@ -238,3 +249,4 @@ class Logo(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+    

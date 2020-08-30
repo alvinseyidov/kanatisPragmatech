@@ -8,7 +8,7 @@ class CommonNode(template.Node):
     def render(self, context):
         context['logo'] = Logo.objects.order_by('id').first()
         context['about'] = AboutUs.objects.order_by('id').first()
-        context['allservices'] = Service.objects.order_by('-id').all()
+        context['allservices'] = Service.objects.order_by('order')
 
         return ''
 

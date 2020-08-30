@@ -3,6 +3,7 @@
 {% block body %}
     {% load i18n %}
     {% load thumbnail %}
+    {% load widget_tweaks %}
 
     <!-- HOME SLIDER -->
     <div class="slider-container">
@@ -25,7 +26,6 @@
                     </div>
                 </div>
             {% endfor %}
-
 
         </div>
     </div>
@@ -136,7 +136,7 @@
                                             <h2 class="blog-title"><a
                                                     href="{% url 'kanatis:blog_detail' post.slug %}">{{ post.title }}</a>
                                             </h2>
-                                            <div class="article-excerpt">{{ post.content|truncatechars:200|safe }}</div>
+                                            <div class="article-excerpt">{{ post.short_content|truncatechars:120 }}</div>
                                         </div>
                                     </article>
                                 </div>
@@ -158,6 +158,7 @@
             <div class="contact_title">
                 <h2>{% trans 'Əlaqə' %}</h2>
             </div>
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 margin-bm54">
@@ -192,24 +193,24 @@
                     </div>
                     <div class="col-lg-6">
                         <div id="contact-form-holder">
-                            <form method="post" id="contact-form" action='include/contact-process.php'>
-                                <div class="margin-b32"><label>{% trans 'Name'|upper %}</label><input type="text"
-                                                                                                      name="name"
-                                                                                                      class="comm-field"/>
+                            <form method="post" id="contact-form">
+                                {% csrf_token %}
+
+                                <div class="margin-b32"><label>{% trans 'Name'|upper %}</label>
+                                    {% render_field form.name class="comm-field" %}
                                 </div>
-                                <div class="margin-b32"><label>{% trans 'EMAIL'|upper %}</label><input type="text"
-                                                                                                       name="email"
-                                                                                                       class="comm-field"/>
+                                <div class="margin-b32"><label>{% trans 'EMAIL'|upper %}</label>
+                                    {% render_field form.email class="comm-field" %}
                                 </div>
-                                <div class="margin-b32"><label>{% trans 'Subject'|upper %}</label><input type="text"
-                                                                                                         name="subject"
-                                                                                                         class="comm-field"/>
+                                <div class="margin-b32"><label>{% trans 'Subject'|upper %}</label>
+                                    {% render_field form.subject class="comm-field" %}
                                 </div>
-                                <div class="margin-b32"><label>{% trans 'Message'|upper %}</label><textarea
-                                        name="message" id="msg-contact" rows="5"></textarea></div>
+                                <div class="margin-b32"><label>{% trans 'Message'|upper %}</label>
+                                    {% render_field form.desc class="comm-field" id='msg-contact' rows='5' %}</div>
                                 <p class="antispam">Leave this empty: <input type="text" name="url"/></p>
                                 <p><input type="submit" value="{% trans 'Send message'|upper %}" id="submit"/></p>
                             </form>
+
                         </div>
                         <!-- contact-form-holder-->
                         <div id="output-contact"></div>
