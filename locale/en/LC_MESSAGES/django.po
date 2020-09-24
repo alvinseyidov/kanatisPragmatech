@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-30 07:55+0000\n"
-"PO-Revision-Date: 2020-08-05 17:33+0000\n"
+"PO-Revision-Date: 2020-08-30 15:44+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -80,7 +80,8 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: kanatis_app/templates/blog-detail.html:12 kanatis_app/templates/blog.html:11
+#: kanatis_app/templates/blog-detail.html:12
+#: kanatis_app/templates/blog.html:11
 #: kanatis_app/templates/includes/footer.html:37
 #: kanatis_app/templates/includes/header.html:54
 #: kanatis_app/templates/includes/header.html:141
@@ -94,11 +95,11 @@ msgstr ""
 #: kanatis_app/templates/contact.html:8 kanatis_app/templates/index.html:161
 #: kanatis_app/templates/index.html:166
 msgid "Əlaqə"
-msgstr ""
+msgstr "Contact"
 
 #: kanatis_app/templates/contact.html:15
 msgid "Address"
-msgstr ""
+msgstr "Address"
 
 #: kanatis_app/templates/contact.html:18
 msgid "Phone"
@@ -150,18 +151,18 @@ msgstr ""
 #: kanatis_app/templates/services-type.html:50
 #: kanatis_app/templates/services.html:43
 msgid "Ətraflı"
-msgstr ""
+msgstr "More"
 
 #: kanatis_app/templates/index.html:63
 #: kanatis_app/templates/services-type-detail.html:26
 #: kanatis_app/templates/services.html:9
 #: kanatis_app/templates/team-single-page.html:42
 msgid "Xidmətlər"
-msgstr ""
+msgstr "Services"
 
 #: kanatis_app/templates/index.html:110
 msgid "Xəbərlər"
-msgstr ""
+msgstr "News"
 
 #: kanatis_app/templates/index.html:170
 msgid "OFFICE"
@@ -189,7 +190,7 @@ msgstr ""
 
 #: kanatis_app/templates/services-type.html:15
 msgid "Xidmət tapılmadı"
-msgstr ""
+msgstr "Service not found"
 
 #~ msgid "Haqqımızda"
 #~ msgstr "About us"
