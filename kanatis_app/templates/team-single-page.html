@@ -12,13 +12,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
-                        <!-- {% thumbnail team.img "600x500" crop="top" as img %}
+                        {% thumbnail team.img "600x800" crop="top" as img %}
                             <img src='{{ img.url }}' class="img-fluid margin-b32">
                             {% comment %}
                                 600px 550px
                             {% endcomment %}
-                        {% endthumbnail %} -->
-                        <img src='{{ team.img.url }}' class="img-fluid margin-b32">
+                        {% endthumbnail %}
+                       {#<img src='{{ team.img.url }}' class="img-fluid margin-b32"> -->#}
                         <div class="pcolor margin-b16">{{ team.status }}</div>
                         <h5 class="widgettitle">{{ team.name }}</h5>
                         <hr/>
