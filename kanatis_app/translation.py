@@ -40,11 +40,13 @@ translator.register(TextPages, TextPagesTranslationOptions)
 class AboutUsTranslationOptions(TranslationOptions):
     fields = ('title', 'description',)
 
+
 translator.register(AboutUs, AboutUsTranslationOptions)
 
 
 class SubAboutUsTranslationOptions(TranslationOptions):
     fields = ('title', 'description',)
+
 
 translator.register(SubAboutUs, SubAboutUsTranslationOptions)
 
@@ -75,3 +77,10 @@ class ContactTranslationOptions(TranslationOptions):
 
 
 translator.register(Contact, ContactTranslationOptions)
+
+
+class ContactFormTranslationOptions(TranslationOptions):
+    fields = ('name', 'email', 'subject', 'desc')
+
+
+translator.register(ContactUs, ContactFormTranslationOptions)

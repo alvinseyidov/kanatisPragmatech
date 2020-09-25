@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-
 admin.site.register(ContactUs)
 
 
@@ -109,6 +108,7 @@ class AboutAdmin(admin.ModelAdmin):
         'img'
 
     ]
+
     def has_add_permission(self, request):
         if self.model.objects.count() >= 1:
             return False
@@ -126,6 +126,7 @@ class SubAboutAdmin(admin.ModelAdmin):
         'img', 'about'
 
     ]
+
     def has_add_permission(self, request):
         if self.model.objects.count() >= 10:
             return False
@@ -133,6 +134,7 @@ class SubAboutAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SubAboutUs, SubAboutAdmin)
+
 
 class ContactAdmin(admin.ModelAdmin):
     fields = [
@@ -148,4 +150,23 @@ class ContactAdmin(admin.ModelAdmin):
             return False
         return super().has_add_permission(request)
 
+
 admin.site.register(Contact, ContactAdmin)
+
+
+# class ContactUsAdmin(admin.ModelAdmin):
+#     fields = [
+#         'address_az', 'address_en',
+#         'text_az', 'text_en',
+#         'gmap_embed_address', 'office_hour',
+#         'number', 'office_phone', 'social_networks'
+#
+#     ]
+#
+#     def has_add_permission(self, request):
+#         if self.model.objects.count() >= 1:
+#             return False
+#         return super().has_add_permission(request)
+#
+#
+# admin.site.register(Contact, ContactAdmin)

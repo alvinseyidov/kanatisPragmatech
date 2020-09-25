@@ -89,7 +89,7 @@ class SubServicePageView(TemplateView):
         context = super(SubServicePageView, self).get_context_data(**kwargs)
         service = kwargs.get('service')
         if service:
-            context['servicetypes'] = SubService.objects.order_by('order').filter(service__slug=service)
+            context['servicetypes'] = SubService.objects.filter(service__slug=service).order_by('order')
         context['contact'] = Contact.objects.order_by('-id').last()
         return context
 
