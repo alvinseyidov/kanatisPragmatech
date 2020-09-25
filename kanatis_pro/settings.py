@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'kanatis_pro.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-if PROD:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -212,7 +212,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if not PROD:
+if PROD:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 else:
     STATICFILES_DIRS = [

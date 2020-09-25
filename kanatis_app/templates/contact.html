@@ -27,13 +27,31 @@
 
                             <form method="post">
                                 {% csrf_token %}
-                                <div class="row">
-                                    <div class="col-lg-4 margin-b32">{% render_field form.name class="comm-field" %}</div>
-                                    <div class="col-lg-4 margin-b32">{% render_field form.email class="comm-field" %}</div>
-                                    <div class="col-lg-4 margin-b32">{% render_field form.subject class="comm-field" %}
+                                <div class="row" style="flex-wrap: nowrap">
+                                    <div class="name">
+                                        <p style="margin: 3px 15px;">{% trans 'Name' %}</p>
+                                        <div class="col-lg-12 margin-b32">{% render_field form.name class="comm-field" placeholder=form.label_suffix %}</div>
+
                                     </div>
+                                    <div class="email">
+                                        <p style="margin: 3px 15px;">{% trans 'Email' %}</p>
+                                        <div class="col-lg-12 margin-b32">{% render_field form.email class="comm-field" placeholder=form.label_suffix %}</div>
+
+                                    </div>
+                                    <div class="subject">
+                                        <p style="margin: 3px 15px;">{% trans 'Subject' %}</p>
+                                        <div class="col-lg-12 margin-b32">{% render_field form.subject class="comm-field" placeholder=form.label_suffix %}</div>
+
+                                    </div>
+                                    {#                                    <div class="col-lg-4 margin-b32">{% render_field form.email class="comm-field" %}</div>#}
+                                    {#                                    <div class="col-lg-4 margin-b32">{% render_field form.subject class="comm-field" %}#}
+                                    {#                                    </div>#}
                                 </div>
-                                <div class="margin-b32">{% render_field form.desc class="comm-field" %}</div>
+                                <div class="desc">
+                                    <p style="margin: 3px 15px;">{% trans 'Description' %}</p>
+                                    <div class="margin-b32">{% render_field form.desc class="comm-field" %}</div>
+
+                                </div>
                                 <p><input type="submit" value="{% trans 'Send message'|upper %}" id="submit"/></p>
                             </form>
                         </div>
@@ -52,25 +70,30 @@
             <div class="container">
                 <div class="">
                     <div class="">
-                        <div class="">
+                        <div class="maps">
                             {{ contact.gmap_embed_address|safe }}
-                        <style>
-                            .mapouter {
-                            position: relative;
-                            text-align: right;
-                            height: 1500px;
-                            width: 1500px;
-                        }
+                            <style>
+                                .maps a{
+                                    display: none;
+                                }
+                                .mapouter {
+                                    position: relative;
+                                    text-align: right;
+                                    height: 1500px;
+                                    width: 1500px;
+                                }
 
-                        .gmap_canvas {
-                            overflow: hidden;
-                            background: none !important;
-                            height: 1500px;
-                            width: 1500px;
-                        }
-                        </style>
+                                .gmap_canvas {
+                                    overflow: hidden;
+                                    background: none !important;
+                                    height: 1500px;
+                                    width: 1500px;
+                                }
+                            </style>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </section>
         <!-- /SECTION 2-->
